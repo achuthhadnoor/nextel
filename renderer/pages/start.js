@@ -1,56 +1,81 @@
 
-import React from 'react' 
+import {Component} from 'react'
+import Router from 'next/router'
+//Layout
+import Page from './../layouts/page'
+//services
+import {getUser,updateUser} from './../services/local-storage'
+import {getCookie} from './../services/cookies'
 
-const Home = () => (
-  <div>
-    dsdfffff
-    <style jsx>{`
-      .hero {
-        width: 100%;
-        color: #333;
-      }
-      .title {
-        margin: 0;
-        width: 100%;
-        padding-top: 80px;
-        line-height: 1.15;
-        font-size: 48px;
-      }
-      .title,
-      .description {
-        text-align: center;
-      }
-      .row {
-        max-width: 880px;
-        margin: 80px auto 40px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-      }
-      .card {
-        padding: 18px 18px 24px;
-        width: 220px;
-        text-align: left;
-        text-decoration: none;
-        color: #434343;
-        border: 1px solid #9b9b9b;
-      }
-      .card:hover {
-        border-color: #067df7;
-      }
-      .card h3 {
-        margin: 0;
-        color: #067df7;
-        font-size: 18px;
-      }
-      .card p {
-        margin: 0;
-        padding: 12px 0 0;
-        font-size: 13px;
-        color: #333;
-      }
-    `}</style>
-  </div>
-)
+//components 
+import Logo from './../icons/logo'
 
-export default Home
+class Start extends Component{
+  constructor(){
+    super()
+  }
+ componentDidMount() {
+    const { user } = getUser()
+    // const cfg = remote && remote.app ? remote.app.config : {}
+    const token = getCookie('taskr')
+    const { pro } = user
+    const skipOnboard = user.onboard ? '/home' : '/start'
+    const redirectUrl = pro && token ? '/home' : skipOnboard
+
+    if (!user.onboard) {
+      const userUpdated = Object.assign(user, { onboard: true })
+      updateUser(userUpdated)
+    }
+    Router.push(redirectUrl)
+  }
+  render(){
+    return(
+      <Page >
+          <section className="section">
+                    <Logo/>
+                    <h1><span className="light">Welcome to</span><br/> Snip</h1>
+                    <span>Manage your single line snippets at ease!</span>
+                </section>
+                <style>{`
+                    h1{
+                        font-size:3em;
+                        margin:10px 0px;
+                    }
+                    .light{
+                      font-weight:200;
+                    }
+                    span{
+                        line-height:2;
+                        letter-spacing:1.2;
+                        margin:10px 0px
+                    }
+                    .section{
+                        display: flex;
+                        text-align: left;
+                        justify-content: center;
+                        max-width: 800px;
+                        flex-direction: column;
+                        margin: auto;
+                        height:100%
+                    }
+                    .started{
+                      width: 100%;
+                      padding:10px 15px;
+                      background-color: #fff;
+                      color: #000;
+                      border: none;
+                      font-weight:500;
+                      font-size: 1.2em;
+                      cursor: pointer;
+                      text-align:center;
+                      color:#222;
+                      text-transform: uppercase;
+                      letter-spacing: 2px;
+                      outline: none;
+                    }
+                `}</style>
+      </Page>
+      )
+  }
+}
+export default Start
