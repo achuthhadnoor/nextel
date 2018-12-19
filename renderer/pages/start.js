@@ -9,10 +9,12 @@ import {getCookie} from './../services/cookies'
 
 //components 
 import Logo from './../icons/logo'
+import Button from './../ui/button'
 
 class Start extends Component{
   constructor(){
-    super()
+    super();
+    this.home = this.home.bind(this)
   }
  componentDidMount() {
     const { user } = getUser()
@@ -28,6 +30,9 @@ class Start extends Component{
     }
     Router.push(redirectUrl)
   }
+  home(){
+    Router.push('/home')
+  }
   render(){
     return(
       <Page >
@@ -35,6 +40,7 @@ class Start extends Component{
                     <Logo/>
                     <h1><span className="light">Welcome to</span><br/> Snip</h1>
                     <span>Manage your single line snippets at ease!</span>
+                    <Button onClick={this.home}>Get Started</Button>
                 </section>
                 <style>{`
                     h1{
