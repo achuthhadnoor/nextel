@@ -16,7 +16,7 @@ const EmptyState = ({ title }) => {
         h3 {
           color: #fff;
           text-align: center;
-          font-size: 2em;
+          font-size: 1.2em;
           width: 100%;
           opacity: 0.75;
         }
