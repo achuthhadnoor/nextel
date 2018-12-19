@@ -42,7 +42,7 @@ const List = ({ children, task, icon, onMove, onDelete ,onCopy }) => {
                 <i className="icon dragg"><DragHandle/></i>
               <style jsx>{`
               .dragg{
-                  cursor:drag;
+                cursor:move;
               }
               .icon{
                   padding:0px 10px;
@@ -68,9 +68,11 @@ const List = ({ children, task, icon, onMove, onDelete ,onCopy }) => {
                     background: red;
               }
                .eachSnip{
+                   margin:0;
                  cursor:pointer;
                  user-select:none;
                  display:flex;
+                 width:320px;
                  padding:5px 10px;
                  user-select:none;
                  overflow:hidden;
@@ -78,7 +80,7 @@ const List = ({ children, task, icon, onMove, onDelete ,onCopy }) => {
                .subEach{
                  flex:1 0;
                  display:flex;
-                 width:450px;
+                 width:320px;
                  overflow:hidden;
                  flex-direction:column;
                  line-height:1em;

@@ -32,11 +32,9 @@ class Home extends Component {
         this.setState({ user })
     }
     
-    onCopy(task) {
-        debugger
-        document.execCommand(task.snip);
-        // const { clipboard } = require('electron')
-        // clipboard.writeText(task.snip)
+    onCopy(task) { 
+        const { clipboard } = require('electron')
+        clipboard.writeText(task.snip)
     }
     onMove(type, task) {
         const { user } = getUser()
@@ -74,14 +72,34 @@ class Home extends Component {
         )
         // <input type="search" className="search" placeholder="Search snips..." onChange={this.filterList}/>
         return (
+                    // <div className="dialogz"></div>
             <Page title="Snip" settings="true">
                     <div className="contentz"> {content}</div>
                     <style>{`
+                    .dialogz{
+                        animation: FadeAnimation 1s ease-in .2s forwards;
+                        height:200px;
+                        width:200px;
+                        position:absolute;
+                        top:0;
+                        z-index:999;
+                        background:#fff
+                    }
+                    @keyframes FadeAnimation {
+                        0% {
+                          opacity: 1;
+                          visibility: visible;
+                        }
+                      
+                        100% {
+                          opacity: 0;
+                          visibility: hidden;
+                        }
+                      }
                         .contentz{
                             height: calc(500px - 40px);
                             overflow: auto;
                             margin: 15px 0px;
-                            padding: 0px 10px;
                         }
                     `}</style>
             </Page>

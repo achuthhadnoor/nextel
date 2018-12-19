@@ -11,7 +11,7 @@ const { writeJSON, readJson } = require('fs-extra')
 const { getUser, updateUser } = require('./local-storage')
 const notify = require('./notify')
 
-export const exportUser = () => {
+export const exportUser = () => { 
   remote.dialog.showSaveDialog(
     undefined,
     { defaultPath: `${homedir()}/snip.json` },

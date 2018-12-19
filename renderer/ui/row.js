@@ -12,20 +12,20 @@ const Row = ({ children,title ,description, icon, onclick }) => {
     
     switch (icon) {
         case 'import':
-            actionIcon =(<span onClick={onclick}><Import /></span>);
+            actionIcon =(<span  ><Import /></span>);
             break;
         case 'export':
-            actionIcon =(<span onClick={onclick}><Export /></span>);
+            actionIcon =(<span  ><Export /></span>);
             break;
-        case 'trash':
-            actionIcon =(<span onClick={onclick}><Trash /></span>);
+        case 'trash': 
+            actionIcon =(<span ><Trash /></span>);
             break;        
         default:
             // code
     }
 
     return (
-          <li className="eachSnip">
+          <li className="eachSnip" onClick={onclick}>
             <span className="red"></span>
             <div className="subEach">
               <span className="etitle">{title}</span>

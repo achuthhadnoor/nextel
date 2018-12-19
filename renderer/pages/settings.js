@@ -7,7 +7,7 @@ import Page from './../layouts/page'
 import Row from './../ui/row'
 
 //services
-// import { exportUser, importUser, clearHistory } from './../services/settings'
+import { exportUser, importUser, clearHistory } from './../services/settings'
 
 class Settings extends Component {
     constructor(){
@@ -18,9 +18,9 @@ class Settings extends Component {
         return(
             <Page title="settings" home="true">
                 <div className="contentz">
-                    <Row title="Import Snips" description="import snips from JSON" icon="import" />
-                    <Row title="Export Snips" description="import snips from JSON" icon="export"  />
-                    <Row title="Delete Snips" description="import snips from JSON" icon="trash"  />
+                    <Row title="Import Snips" description="import snips from JSON" icon="import" onclick={importUser}/>
+                    <Row title="Export Snips" description="import snips from JSON" icon="export" onclick={exportUser} />
+                    <Row title="Delete Snips" description="import snips from JSON" icon="trash"  onclick={clearHistory}/>
                 </div>
                 <style>{`
                 .contentz{

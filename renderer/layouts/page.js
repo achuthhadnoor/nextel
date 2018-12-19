@@ -112,9 +112,9 @@ class Page extends Component {
                 display: flex;
                 width: 100%;
                 max-width:800px;
+                width:320px;
                 margin:auto;
                 flex-direction: column;
-                width: 100%;
               }
               #__next{
                    position: absolute;
