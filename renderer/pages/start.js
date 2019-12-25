@@ -13,13 +13,14 @@ import Button from './../ui/button'
 
 class Start extends Component{
   constructor(){
+
     super();
     this.home = this.home.bind(this)
   }
  componentDidMount() {
     const { user } = getUser()
     // const cfg = remote && remote.app ? remote.app.config : {}
-    const token = getCookie('taskr')
+    const token = getCookie('snip')
     const { pro } = user
     const skipOnboard = user.onboard ? '/home' : '/start'
     const redirectUrl = pro && token ? '/home' : skipOnboard
