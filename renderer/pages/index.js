@@ -1,5 +1,5 @@
 import { Component } from 'react';
-
+import styled from 'styled-components'
 import Router from 'next/router'
 import Link from 'next/link'
 
@@ -24,11 +24,14 @@ class Onboard extends Component {
     } 
     render() {
         return (
-            <>
+            <Wrapper>
                 <Link href="/home"><a >go home</a></Link>
-            </>
+            </Wrapper>
         );
     }
 }
-
+const Wrapper = styled.div`
+    background:${props=>props.theme.primary}
+    color:${props=>props.theme.color}
+`
 export default Onboard;

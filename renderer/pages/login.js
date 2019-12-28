@@ -49,8 +49,9 @@ class Login extends React.Component {
         this.setState({ [name]: value });
     }
     render() {
-        return this.state.logging ? <div>loading</div> :
-            ( 
+         
+        // this.state.logging ? <div>loading</div> :
+            return( 
 
                     <Wrapper>
                         <svg

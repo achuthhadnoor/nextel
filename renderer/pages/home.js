@@ -1,15 +1,17 @@
-import styled from "styled-components";
-import mouseTrap from "mousetrap";
-import Link from "next/link";
 import Router from "next/router";
+
+import styled from "styled-components";
+import mouseTrap from "mousetrap"; 
+
 import Icon from "react-icons-kit";
 import {plus} from 'react-icons-kit/feather'
+
 import {Header,Commands} from './../Components/Home'
+import Snippets from "./../Components/snippets";
+import Input from "./../Components/Input";
 
 import { getUser } from './../config/localstorage'
  
-import Snippets from "./../Components/snippets";
-import Input from "./../Components/Input";
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -126,9 +128,8 @@ class Home extends React.Component {
                         onSelect={id => this.setState({ selectedSnip: id })}
                     />
                     {this.state.command && <Commands close={() => this.setState({ command: false })} />}
-                </section>
-                <Link href="/">
-                        <Icon icon={plus}  style={{
+                </section> 
+                    <Icon icon={plus}  style={{
                             position: "fixed",
                             zIndex: 999,
                             padding: 15,
@@ -137,8 +138,8 @@ class Home extends React.Component {
                             bottom: 5,
                             right: 10,
                             color: "#222"
-                        }}/>
-                </Link>
+                        }}
+                        onClick={()=>{Router.push('/new')}}/>  
             </Wrapper>
         );
     }
