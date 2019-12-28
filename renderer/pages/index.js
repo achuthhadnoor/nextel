@@ -2,17 +2,16 @@ import { Component } from 'react';
 
 import Router from 'next/router'
 import Link from 'next/link'
-// Services
-import {getUser} from './../config/localstorage'
 
+import {getUser} from './../config/localstorage'
 class Onboard extends Component {
     constructor() {
         super();
         this.state = { user:[] };
     }
     componentDidMount(){
-        const { user } = this.props;  
-        if(user.uid !== ''){
+        const { user } = getUser();   
+        if(user.uid === ''){
             Router.push('/login')
         }
         else {
@@ -22,7 +21,7 @@ class Onboard extends Component {
                 Router.push('/home')
             }
         }
-    }
+    } 
     render() {
         return (
             <>

@@ -1,8 +1,8 @@
 {
     "version": "0.2.0",
-    "configurations": [
+    "configurations": [ 
       {
-        "name": "Debug Main Process",
+        "name": "Electron main process",
         "type": "node",
         "request": "launch",
         "cwd": "${workspaceRoot}",

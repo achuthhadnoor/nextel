@@ -19,7 +19,7 @@ class Login extends React.Component {
         this.onInputChange = this.onInputChange.bind(this);
     }
     componentDidMount() {
-        const { user } = this.props;
+        const { user } = getUser(); 
         if (user.uid !== '') { 
             Router.push('/home')
         }
