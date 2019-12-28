@@ -1,5 +1,4 @@
-import styled from "styled-components";
-import { Link } from "next/link";
+import styled from "styled-components"; 
 export default ({snips,tags,selectedSnip,onSelect}) => {  
     return (
   <ListBox>
@@ -10,7 +9,7 @@ export default ({snips,tags,selectedSnip,onSelect}) => {
     ) : (
       snips.map((s, i) => { 
         return (
-          <Link to={"/snip/" + s.id} key={s.id}>
+          <a href = {"/snip/" + s.id} key={s.id}>
             <ListItem
               selected={i === selectedSnip}
               tabIndex={i === selectedSnip ? 0 : 1}
@@ -28,7 +27,7 @@ export default ({snips,tags,selectedSnip,onSelect}) => {
                   : null}
               </TagWrapper>
             </ListItem>
-          </Link>
+          </a>
         );
       })
     )}

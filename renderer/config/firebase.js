@@ -6,7 +6,8 @@ import { firebaseConfig } from "./constants";
 
 class Firebase {
   constructor() {
-    app.initializeApp(firebaseConfig);
+   if(app.apps.length === 0){
+      app.initializeApp(firebaseConfig);
     this.auth = app.auth();
     this.user = {};
     app
@@ -25,6 +26,7 @@ class Firebase {
       });
     // Subsequent queries will use persistence, if it was enabled successfully
   }
+}
   login(e, p) {
     return new Promise((resolve, reject) => {
       this.auth

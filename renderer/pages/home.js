@@ -3,11 +3,11 @@ import mouseTrap from "mousetrap";
 import Link from "next/link";
 import Router from "next/router";
 import Icon from "react-icons-kit";
-import { logOut, settings, plus, x } from "react-icons-kit/feather";
-import firebase from "./../config/firebase";
-import { getUser } from './../config/localstorage'
+import {plus} from 'react-icons-kit/feather'
+import {Header,Commands} from './../Components/Home'
 
-import Logo from "./../Components/logo";
+import { getUser } from './../config/localstorage'
+ 
 import Snippets from "./../Components/snippets";
 import Input from "./../Components/Input";
 class Home extends React.Component {
@@ -109,6 +109,7 @@ class Home extends React.Component {
                 <Header {...this.props} />
                 <section style={{ flex: 1, maxWidth: '400px' }}>
                     <Input
+                        search
                         type="search"
                         placeholder="Search for tags or snippets"
                         icon="search"
@@ -126,64 +127,23 @@ class Home extends React.Component {
                     />
                     {this.state.command && <Commands close={() => this.setState({ command: false })} />}
                 </section>
-                <Footer />
+                <Link href="/">
+                        <Icon icon={plus}  style={{
+                            position: "fixed",
+                            zIndex: 999,
+                            padding: 15,
+                            background: "#5D9E6B",
+                            borderRadius: "5em",
+                            bottom: 5,
+                            right: 10,
+                            color: "#222"
+                        }}/>
+                </Link>
             </Wrapper>
         );
     }
 }
-// Components
-const Commands = (props) => {
-    return (
-        <div style={{ position: 'fixed', top: '0px', height: '100%', width: '100%', background: '#000', zIndex: '99999' }}>
-            <Icon icon={x} style={{ padding: "1em" }} onClick={() => props.close()} />
-            list of all the shortcuts
-        </div>
-    )
-}
-
-const Header = (props) => (
-    <header style={{ display: "flex" }}>
-        <Link href="/">
-            <a> <Logo />  </a>
-        </Link>
-        <h2 style={{ margin: 0, padding: ".5em", flex: 1, textAlign: "center" }}>
-            Snipcode
-    </h2>
-        <Link href="/settings">
-            <a >
-                <Icon icon={settings} style={{ padding: "1em" }} />
-            </a>
-        </Link>
-        <Icon
-            icon={logOut}
-            style={{ padding: "1em", cursor: "pointer" }}
-            tooltip="Sign Out "
-            onClick={() => {
-                Router.push("/login");
-                firebase.signOut();
-                localStorage.clear();
-            }}
-        />
-    </header>
-);
-
-const Footer = () => (
-    <Link href="/new">
-        <a 
-            style={{
-                position: "fixed",
-                zIndex: 999,
-                padding: 15,
-                background: "#5D9E6B",
-                borderRadius: "5em",
-                bottom: 5,
-                right: 10,
-                color: "#222"
-            }} >
-            <Icon icon={plus} />
-        </a>
-    </Link>
-);
+ 
 
 // styles
 const Wrapper = styled.div`
@@ -193,8 +153,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   overflow-x: hidden;
   position: fixed;
-  background: #25282c;
-  color: #fff;
+  background:${props=>props.theme.primary};
+  color:${props=>props.color};
 `;
 export default Home;
 

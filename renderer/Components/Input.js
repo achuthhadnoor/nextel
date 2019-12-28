@@ -3,7 +3,7 @@ import Icon from "react-icons-kit";
 import { search, command } from "react-icons-kit/feather";
 const InputWrapper = styled.div`
   display: flex;
-  background:${props=>props.theme.bgCol};
+  background:${props=>props.theme.secondary};
   color:${props=>props.theme.color};
   margin: 10px;
   border-radius: 5px;
