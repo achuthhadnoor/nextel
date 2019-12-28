@@ -12,7 +12,7 @@ html,body{
   height:100%;
   width:100%;
 }
-#root{
+#__next{
   padding:0;
   margin:0;
   display:flex;
@@ -33,6 +33,13 @@ input[type="submit"] {
       color:inherit;
       outline:none;
     }
+    .themeChanger{
+        position:absolute;
+        top:0px;
+        right:0px;
+        border:none;
+        background:transparent
+    }
 `;
 
 let progress
@@ -49,12 +56,16 @@ Router.onRouteChangeComplete = stopProgress
 Router.onRouteChangeError = stopProgress
 
 const light = {
-    color: '#eee',
-    bgCol: '#0f1113'
+    color: '#25282c',
+    primary: '#eee',
+    secondary:'#fff',
+    accent: '#5d9e6b'
 };
 const dark = {
-    color: '#333',
-    bgCol: '#eee'
+    color: '#eee',
+    primary: '#25282c',
+    secondary:'#181a1d',
+    accent: "#5d9e6b"
 }
 class Page extends Component {
     constructor() {
@@ -79,9 +90,9 @@ class Page extends Component {
             <>
                 <ThemeProvider theme={this.state.theme}>
                     <GlobalStyle />
-                    <button onClick={() => {
-                    this.state.selectedTheme === 'light' ? this.setState({ theme: light,selectedTheme:'dark' }) : this.setState({ theme: dark ,selectedTheme:'light'})
-                    }}>toggle mode</button>
+                    <button className="themeChanger" onClick={() => {
+                        this.state.selectedTheme === 'light' ? this.setState({ theme: light, selectedTheme: 'dark' }) : this.setState({ theme: dark, selectedTheme: 'light' })
+                    }}>❤</button>
                     {children}
                 </ThemeProvider>
             </>

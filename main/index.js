@@ -137,6 +137,7 @@ function createWindow() {
   if (isDev) {
     // DEVELOPMENT Load the CRA server
     trayWindow.loadURL(devPath);
+    trayWindow.webContents.openDevTools();
   } else {
     // PRODUCTION Load the React build
     trayWindow.loadURL(

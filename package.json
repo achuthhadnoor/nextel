@@ -3,6 +3,12 @@
     "productName": "Snipcode",
     "version": "1.0.0",
     "main": "main/index.js",
+    "description": "A simple snippet manager for menubar",
+    "author": {
+        "name": "Achuth hadnoor",
+        "email": "achuth.hadnoor123@gmail.com",
+        "url": "https://achuth.netlify.com/"
+    },
     "scripts": {
         "clean": "rimraf dist renderer/.next renderer/out",
         "start": "electron .",
@@ -23,7 +29,7 @@
         ],
         "win": {
             "target": "nsis",
-            "icon": "main/static/logo.ico" 
+            "icon": "main/static/logo.ico"
         },
         "dmg": {
             "contents": [
@@ -63,9 +69,11 @@
         "electron-log": "^4.0.2",
         "electron-next": "^3.1.5",
         "electron-positioner": "^4.1.0",
+        "firebase": "^7.6.1",
         "mousetrap": "^1.6.3",
         "nprogress": "^0.2.0",
         "react-icons-kit": "^1.3.1",
-        "styled-components": "^4.4.1"
+        "styled-components": "^4.4.1",
+        "uid-promise": "^1.1.0"
     }
 }
