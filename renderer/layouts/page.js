@@ -38,7 +38,8 @@ input[type="submit"] {
         top:0px;
         right:0px;
         border:none;
-        background:transparent
+        background:transparent;
+        z-index:999999
     }
     
     #nprogress {
@@ -115,6 +116,13 @@ class Page extends Component {
                     <GlobalStyle />
                     <button className="themeChanger" onClick={() => {
                         this.state.selectedTheme === 'light' ? this.setState({ theme: light, selectedTheme: 'dark' }) : this.setState({ theme: dark, selectedTheme: 'light' })
+                        const theme = localStorage.getItem('theme');
+                        if(theme === 'tomorrow'){
+                            localStorage.setItem('theme','tomorrow_night');
+                        }
+                        else{
+                            const theme = localStorage.setItem('theme','tomorrow');
+                        }
                     }}>❤</button>
                     {children}
                 </ThemeProvider>

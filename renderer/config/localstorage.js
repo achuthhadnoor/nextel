@@ -57,8 +57,7 @@ export const updatesnip = ({ id, newsnip }) => {
         const snip = user.snips.filter(snipcode => snipcode.id === id)[0]
         snip.title = newsnip.title || snip.title
         snip.code = newsnip.code || snip.code
-        snip.tags = newsnip.tags || snip.tags
-        debugger
+        snip.tags = newsnip.tags || snip.tags 
         snip.language = newsnip.language || snip.language
         snip.updatedAt = new Date()
         const snips = user.snips.filter(t => {
