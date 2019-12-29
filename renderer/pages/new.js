@@ -15,7 +15,7 @@ class New extends Component {
                 code: '',
                 tags: [],
                 language: 'java',
-                trash: false
+                trash: false,
             }
         };
     }

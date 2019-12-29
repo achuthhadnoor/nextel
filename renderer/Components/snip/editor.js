@@ -6,7 +6,7 @@ class editor extends Component {
         this.state = {
             code: props.code,
             language: props.language,
-            theme: '',
+            theme: 'tomorrow_night',
             languages: [
                 "abap",
                 "abc",
@@ -142,13 +142,12 @@ class editor extends Component {
         }); 
         this.props.onDataChange(this.state.code, lang.toLowerCase() )
     }
-    render() {  
-        const theme = localStorage.getItem('theme')
+    render() {   
         return (
             <>
             <CodeEditor
                 mode={this.props.language}
-                theme={theme}
+                theme={this.state.theme}
                 setReadOnly = {false}
                 onChange={this.onChange}
                 style={{ flex:1 }}
