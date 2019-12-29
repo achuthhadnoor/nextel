@@ -14,8 +14,8 @@
         "start": "electron .",
         "build": "next build renderer",
         "ebuild": "next build renderer && next export renderer",
-        "pack-app": "npm run build && electron-builder -w --dir",
-        "dist": "npm run build && electron-builder -w",
+        "pack-app": "npm run ebuild && electron-builder -w --dir",
+        "dist": "npm run ebuild && electron-builder -w",
         "web": "next ./renderer",
         "win": "npm run build && electron-builder -w"
     },
