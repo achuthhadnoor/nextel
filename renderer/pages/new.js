@@ -2,7 +2,10 @@ import { Component } from 'react';
 import Router from 'next/router'
 import styled from 'styled-components'
 
-import { Header, Editor } from './../Components/snip'
+import {
+     Header,
+     Editor
+     } from './../Components/snip'
 import Tags from './../Components/snip/tags'
 import { getUser, addSnip, updatesnip } from './../config/localstorage'
 class New extends Component {
@@ -85,7 +88,7 @@ class New extends Component {
                         snip.code = code; 
                         this.setState({ snip: snip });
                     }} 
-                />
+                /> 
             </Wrapper>
         );
     }

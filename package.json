@@ -11,14 +11,10 @@
     },
     "scripts": {
         "clean": "rimraf dist renderer/.next renderer/out",
-        "start": "electron .", 
+        "start": "electron .",
         "build": "next build renderer && next export renderer",
         "pack-app": "npm run build && electron-builder -w --dir",
-        "dist": "npm run build && electron-builder",
-        "web": "next ./renderer",
-        "win": "npm run build && electron-builder -w",
-        "mac": "npm run build && electron-builder -m",
-        "linux": "npm run build && electron-builder -l"
+        "dist": "npm run build && electron-builder -w"
     },
     "build": {
         "asar": true,
@@ -80,6 +76,5 @@
         "react-icons-kit": "^1.3.1",
         "styled-components": "^4.4.1",
         "uid-promise": "^1.1.0"
-    },
-    "license": "MIT"
+    }
 }
