@@ -1,6 +1,4 @@
-
-import Page from './../layouts/page'
-
+import styled from 'styled-components'
 import Row from './../Components/row'
 //services
 import { exportUser, importUser, clearHistory } from './../config/settings'
@@ -27,15 +25,14 @@ clear(){
 }
     render(){
         return(
-            <Page title="settings" home="true">
-                <div className="contentz">
+            <Wrapper > 
                 {this.state.toast ?  
                    <div className="toast">{this.state.toast}</div> 
                    : ''}
                     <Row title="Import Snips" description="import snips from JSON" icon="import" onclick={importUser}/>
                     <Row title="Export Snips" description="import snips from JSON" icon="export" onclick={exportUser} />
                     <Row title="Delete Snips" description="import snips from JSON" icon="trash"  onclick={this.clear}/>
-                </div>
+                 
                 settings
                 <style jsx="true">{`
                   .toast{
@@ -55,13 +52,21 @@ clear(){
                     overflow: auto;
                     margin: 15px 0px;
                     padding: 0px 10px;
+                    display:flex;
+                    flex-direction:column;
+                    width:100%;
                 }
                 `}</style>
-            </Page>
+            </Wrapper>
             )
     }
 }
 export default Settings
 
-
+const Wrapper = styled.div`
+    display:flex;
+    max-width:400px;
+    width:100%;
+    flex-direction:column
+`
 //resolution app for all

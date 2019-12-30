@@ -1,15 +1,17 @@
+import Icon from 'react-icons-kit'
+import {upload, download ,trash} from 'react-icons-kit/feather'
 const Row = ({ children,title ,description, icon, onclick }) => {
     const desc = description >= 30 ? `${description.substr(0, 50)}...` : description
     let actionIcon
     switch (icon) {
         case 'import':
-            actionIcon =(<span  ><Import /></span>);
+            actionIcon =(<span  ><Icon icon={upload} /></span>);
             break;
         case 'export':
-            actionIcon =(<span  ><Export /></span>);
+            actionIcon =(<span  ><Icon icon={download} /></span>);
             break;
         case 'trash': 
-            actionIcon =(<span ><Trash /></span>);
+            actionIcon =(<span ><Icon icon={trash} /></span>);
             break;        
         default:
             // code
