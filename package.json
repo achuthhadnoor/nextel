@@ -14,7 +14,8 @@
         "start": "electron .",
         "build": "next build renderer && next export renderer",
         "pack-app": "npm run build && electron-builder -w --dir",
-        "dist": "npm run build && electron-builder -w"
+        "dist": "npm run build && electron-builder -w",
+        "web": "next ./renderer"
     },
     "build": {
         "asar": true,
@@ -70,6 +71,7 @@
         "electron-next": "^3.1.5",
         "electron-positioner": "^4.1.0",
         "firebase": "^7.6.1",
+        "fs-extra": "^8.1.0",
         "mousetrap": "^1.6.3",
         "nprogress": "^0.2.0",
         "prop-types": "^15.7.2",
