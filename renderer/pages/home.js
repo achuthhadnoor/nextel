@@ -40,7 +40,9 @@ class Home extends React.Component {
         const onboard = localStorage["onboard"];
         if (onboard === "false") {
             localStorage.setItem("onboard", true);
+            debugger
             Router.push("/");
+
         } 
         // get userdata from firestore to display the list
         this.setState({ user: user, tags: user.tags, snips: user.snips });

@@ -14,8 +14,7 @@
         "start": "electron .",
         "build": "next build renderer && next export renderer",
         "pack-app": "npm run build && electron-builder -w --dir",
-        "dist": "npm run build && electron-builder -w",
-        "web": "next ./renderer"
+        "dist": "npm run build && electron-builder " 
     },
     "build": {
         "asar": true,

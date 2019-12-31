@@ -128,7 +128,7 @@ function createWindow() {
     icon: icons.png,
     show: false,
     skipTaskbar: true,
-    frame: platform() !== "win32",
+    frame: false,//platform() !== "win32",
     titleBarStyle: "hidden",
     icon: platform() === "win32" ?
       join(__dirname, "main/static/logo.ico") : join(__dirname, "main/static/logo.icns"),
@@ -138,8 +138,7 @@ function createWindow() {
     },
   });
   const devPath = "http://localhost:8000/";
-  if (isDev) {
-    // DEVELOPMENT Load the CRA server
+  if (isDev) { 
     trayWindow.loadURL(devPath);
     trayWindow.webContents.openDevTools();
   } else {
