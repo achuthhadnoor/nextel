@@ -67,6 +67,8 @@ const Wrapper = styled.div`
     display:flex;
     max-width:400px;
     width:100%;
-    flex-direction:column
+    flex-direction:column;
+    background:${props=>props.theme.primary};
+    color:${props=>props.theme.color}
 `
 //resolution app for all

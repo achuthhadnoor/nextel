@@ -1,43 +1,20 @@
 "use strict";
-     // Native
-    // const { homedir } = require("os");
+// // Services
+import firebase from './firebase'
+const { getUser, updateUser } = require("./localstorage");
+const notify = require("./notify");
 
-    // // Packages
-    // const { remote } = require("electron");
-    // const { writeJSON, readJson } = require("fs-extra");
-
-    // // Services
-    // const { getUser, updateUser } = require("./localstorage");
-    // const notify = require("./notify");
- 
-export const exportUser = () => { 
-        // remote.dialog.showSaveDialog(
-        //     undefined,
-        //     { defaultPath: `${homedir()}/snip.json` },
-        //     fileName => {
-        //         if (fileName) {
-        //             const user = getUser();
-
-        //             writeJSON(fileName, user)
-        //                 .then(() =>
-        //                     notify({
-        //                         title: "User config exported!",
-        //                         body: "Your user config was exported successfully"
-        //                     })
-        //                 )
-        //                 .catch(err => {
-        //                     console.log(err);
-        //                     return notify({
-        //                         title: "Error!",
-        //                         body: "Oops, something happened! Please, try again."
-        //                     });
-        //                 });
-        //         }
-        //     }
-        // ); 
+export const exportUser = () => {
+    const {user} = getUser();
+   const _db = firebase.db;
+    const UserRef = _db.ref('users/'+ user.uid);
+    console.log(UserRef);
+    debugger
+    UserRef.set(user);
+    
 };
 
-export const importUser = () => { 
+export const importUser = () => {
     // remote.dialog.showOpenDialog(
     //     undefined,
     //     { properties: ["openFile"] },

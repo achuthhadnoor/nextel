@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Router  from "next/router";
-export default ({ snips, tags, selectedSnip, onSelect }) => {
+export default ({ snips, tags, selectedSnip, onSelect }) => {  
   return (
     <ListBox>
       {
-        snips === []
+        snips === []  
           ? (
             <>No Snippets Found</>
           ) : (

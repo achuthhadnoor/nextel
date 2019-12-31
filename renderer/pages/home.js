@@ -32,6 +32,7 @@ class Home extends React.Component {
     componentDidMount() {
         // Check if user exists
         const { user } = getUser();
+        
         if (!user.uid) {
             Router.push("/login");
         }
@@ -45,7 +46,6 @@ class Home extends React.Component {
 
         // get userdata from firestore to display the list
         this.setState({ user: user, tags: user.tags, snips: user.snips });
-
         // initialize the keyboard shortcuts 
         mouseTrap.bind(["down", "alt+r"], this._nextSnip);
         mouseTrap.bind(["up", "alt+r"], this._prvSnip);
@@ -83,6 +83,7 @@ class Home extends React.Component {
     };
 
     filteredList = (value) => {
+        debugger
         if (!value) {
             this.setState({ snips: this.state.user.snips });
             return;
@@ -92,7 +93,7 @@ class Home extends React.Component {
             if (snip.title.toLowerCase().includes(value.toLowerCase())) {
                 return true;
             }
-            if (snip.tags.length > 0) {
+            if (snip.tags && snip.tags.length > 0) {
                 const _tags = snip.tags.filter((s) => {
                     if (s.id.toLowerCase().includes(value.toLowerCase())) {
                         return true;
@@ -121,12 +122,12 @@ class Home extends React.Component {
                         style={{ position: "sticky", top: '0px' }}
                         Commands={() => this.setState({ command: !this.state.command })}
                     />
-                    <Snippets
+                   { this.state.snips ?  <Snippets
                         snips={this.state.snips}
                         tags={this.state.tags}
                         selectedSnip={this.state.selectedSnipID}
                         onSelect={id => this.setState({ selectedSnip: id })}
-                    />
+                    /> : <div>no snippets found u dumb</div>}
                     {this.state.command && <Commands close={() => this.setState({ command: false })} />}
                 </section> 
                     <Icon icon={plus}  style={{

@@ -29,12 +29,10 @@ class Login extends React.Component {
         this.setState({ logging: true })
         firebase
             .login(this.state.email, this.state.password)
-            .then(({ user }) => {
-                const usercfg = getUser();
-                usercfg.user.uid = user.uid;
-                updateUser(usercfg.user)
-                // localStorage.setItem("uid", user.uid);
-                // localStorage.setItem("onboard", false);
+            .then(( user ) => {
+                debugger;  
+                localStorage.setItem("uid", user.uid);
+                localStorage.setItem("onboard", false);
                 this.setState({ error: false });
                 Router.push('/home')
             })

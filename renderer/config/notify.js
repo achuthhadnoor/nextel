@@ -1,6 +1,4 @@
 // Packages
-const remote  = window.remote
-
 module.exports = ({ title, body, url, onClick }) => {
   const icon = 'main/static/icon.ico'
   const specs = {
@@ -10,16 +8,14 @@ module.exports = ({ title, body, url, onClick }) => {
     silent: true
   }
 
-  const notification = new remote.Notification(specs)
-
   if (url || onClick) {
-    notification.on('click', () => {
-      if (onClick) {
-        return onClick()
-      }
+    // notification.on('click', () => {
+    //   if (onClick) {
+    //     return onClick()
+    //   }
 
-      remote.shell.openExternal(url)
-    })
+    //   remote.shell.openExternal(url)
+    // })
   }
 
   notification.show()

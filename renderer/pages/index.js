@@ -10,14 +10,18 @@ class Onboard extends Component {
         this.state = { user:[] };
     }
     componentDidMount(){
+        
         const { user } = getUser();   
         if(user.uid === ''){
             Router.push('/login')
         }
         else {
             const onboard = localStorage.getItem('onboard');
+        console.log(onboard)
             if(!onboard){
                 localStorage.setItem('onboard',true)
+            } 
+            else{
                 Router.push('/home')
             }
         }

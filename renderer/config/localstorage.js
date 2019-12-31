@@ -42,6 +42,7 @@ export const addSnip = ({ title, code, tags, language }) => {
                 createdAt: new Date(),
                 updatedAt: new Date(),
             } 
+            
         const snips = [...user.snips, snip]
         user.snips = snips 
         resolve(localStorage.setItem('snipcode', JSON.stringify({ user }))) 
