@@ -96,7 +96,7 @@ if (app.dock) app.dock.hide();
 // Create Tray
 function createTray() {
   tray = new Tray(icons.png); //import icon
-//   tray = new Tray( join(__dirname, "main/static/logo.ico")); //import icon
+  //   tray = new Tray( join(__dirname, "main/static/logo.ico")); //import icon
   tray.setToolTip("Snip, click to open");
   tray.on("click", () => toggleWindow());
 }
@@ -131,7 +131,11 @@ function createWindow() {
     frame: platform() !== "win32",
     titleBarStyle: "hidden",
     icon: platform() === "win32" ?
-      join(__dirname, "main/static/logo.ico") : join(__dirname, "main/static/logo.icns")
+      join(__dirname, "main/static/logo.ico") : join(__dirname, "main/static/logo.icns"),
+    webPreferences: {
+      nodeIntegration: false,
+      preload: join(__dirname, 'preload.js'),
+    },
   });
   const devPath = "http://localhost:8000/";
   if (isDev) {
@@ -161,83 +165,83 @@ function createWindow() {
   trayWindow.setSkipTaskbar(true)
   trayWindow.on("ready-to-show", () => {
     trayWindow.show();
-    if (app.dock) app.dock.hide(); 
-    if (trayWindow.setSkipTaskbar) { 
-      trayWindow.setSkipTaskbar(true) 
+    if (app.dock) app.dock.hide();
+    if (trayWindow.setSkipTaskbar) {
+      trayWindow.setSkipTaskbar(true)
     }
   });
 
   const template = [{
-      label: "Application",
-      submenu: [{
-          label: "About Application",
-          selector: "orderFrontStandardAboutPanel:"
-        },
-        {
-          type: "separator"
-        },
-        {
-          label: "Quit",
-          accelerator: "Command+Q",
-          click: () => app.quit()
-        }
-      ]
+    label: "Application",
+    submenu: [{
+      label: "About Application",
+      selector: "orderFrontStandardAboutPanel:"
     },
     {
-      label: "Edit",
-      submenu: [{
-          label: "Undo",
-          accelerator: "CmdOrCtrl+Z",
-          selector: "undo:"
-        },
-        {
-          label: "Redo",
-          accelerator: "Shift+CmdOrCtrl+Z",
-          selector: "redo:"
-        },
-        {
-          type: "separator"
-        },
-        {
-          label: "Cut",
-          accelerator: "CmdOrCtrl+X",
-          selector: "cut:"
-        },
-        {
-          label: "Copy",
-          accelerator: "CmdOrCtrl+C",
-          selector: "copy:"
-        },
-        {
-          label: "Paste",
-          accelerator: "CmdOrCtrl+V",
-          selector: "paste:"
-        },
-        {
-          label: "Select All",
-          accelerator: "CmdOrCtrl+A",
-          selector: "selectAll:"
-        }
-      ]
+      type: "separator"
     },
     {
-      label: "View",
-      submenu: [{
-        label: "Developer Tools",
-        accelerator: "CmdOrCtrl+alt+I",
-        click: (item, focusedWindow) => {
-          const webContents = focusedWindow.webContents;
-
-          if (webContents.isDevToolsOpened()) {
-            webContents.closeDevTools();
-          } else {
-            webContents.openDevTools({
-              mode: "detach"
-            });
-          }
-        }
-      }]
+      label: "Quit",
+      accelerator: "Command+Q",
+      click: () => app.quit()
     }
+    ]
+  },
+  {
+    label: "Edit",
+    submenu: [{
+      label: "Undo",
+      accelerator: "CmdOrCtrl+Z",
+      selector: "undo:"
+    },
+    {
+      label: "Redo",
+      accelerator: "Shift+CmdOrCtrl+Z",
+      selector: "redo:"
+    },
+    {
+      type: "separator"
+    },
+    {
+      label: "Cut",
+      accelerator: "CmdOrCtrl+X",
+      selector: "cut:"
+    },
+    {
+      label: "Copy",
+      accelerator: "CmdOrCtrl+C",
+      selector: "copy:"
+    },
+    {
+      label: "Paste",
+      accelerator: "CmdOrCtrl+V",
+      selector: "paste:"
+    },
+    {
+      label: "Select All",
+      accelerator: "CmdOrCtrl+A",
+      selector: "selectAll:"
+    }
+    ]
+  },
+  {
+    label: "View",
+    submenu: [{
+      label: "Developer Tools",
+      accelerator: "CmdOrCtrl+alt+I",
+      click: (item, focusedWindow) => {
+        const webContents = focusedWindow.webContents;
+
+        if (webContents.isDevToolsOpened()) {
+          webContents.closeDevTools();
+        } else {
+          webContents.openDevTools({
+            mode: "detach"
+          });
+        }
+      }
+    }]
+  }
   ];
 
   if (platform() !== "win32") {

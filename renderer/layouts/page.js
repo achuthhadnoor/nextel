@@ -91,6 +91,7 @@ const dark = {
     secondary:'#181a1d',
     accent: "#5d9e6b"
 }
+
 class Page extends Component {
     constructor() {
         super();
