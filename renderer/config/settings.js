@@ -8,8 +8,7 @@ export const exportUser = () => {
     const {user} = getUser();
    const _db = firebase.db;
     const UserRef = _db.ref('users/'+ user.uid);
-    console.log(UserRef);
-    debugger
+    console.log(UserRef); 
     UserRef.set(user);
     
 };

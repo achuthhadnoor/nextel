@@ -3,11 +3,11 @@ import Router from 'next/router'
 import styled from 'styled-components'
 
 import {
-     Header,
-     Editor
-     } from './../Components/snip'
+    Header,
+    Editor
+} from './../Components/snip'
 import Tags from './../Components/snip/tags'
-import { getUser, addSnip, updatesnip } from './../config/localstorage'
+import { getUser, addSnip, updatesnip, removeSnip } from './../config/localstorage'
 class New extends Component {
     constructor() {
         super();
@@ -21,22 +21,24 @@ class New extends Component {
                 trash: false,
             }
         };
-    }
-    componentWillMount() {   
-        if(Router.router !== null ){
-        const id = Router.router.query.id;
-        if(id !== undefined){
-            const {user} = getUser();
-            const {snips} = user;
-            var snip = {};
-            snips.map((s)=> { if(s.id === id){ snip = s } });
-            this.setState({snip:snip}) 
-        }     
-        else{
-            this.setState({new:true})
+        debugger
+        if (Router.router !== null) {
+            const id = Router.router.query.id;
+            if (id !== undefined) {
+                const { user } = getUser();
+                const { snips } = user;
+                var snip = {};
+                snips.map((s) => { if (s.id === id) { snip = s } });
+                this.state.snip = snip ;
+            }
+            else {
+                this.state.new = true ; 
+            }
         }
-}
-      }
+    }
+    // componentWillMount() {
+
+    // }
     changeTitle = (title) => {
         const snip = this.state.snip;
         if (title) {
@@ -44,13 +46,13 @@ class New extends Component {
             this.setState({ snip: snip });
         }
     }
-    onSave = ()=>{
+    onSave = () => {
         console.log(this.state);
-        if(this.state.new){
-            addSnip(this.state.snip).then(()=>Router.push('/home'));
+        if (this.state.new) {
+            addSnip(this.state.snip).then(() => Router.push('/home'));
         }
-        else{
-            updatesnip({id:this.state.snip.id,newsnip:this.state.snip}).then(()=>{
+        else {
+            updatesnip({ id: this.state.snip.id, newsnip: this.state.snip }).then(() => {
                 Router.push('/home')
             });
         }
@@ -59,8 +61,11 @@ class New extends Component {
         // updatesnip({ id: id, newsnip: this.state.snip }).catch(e=>{console.log(e);
         // })
     }
-    removeSnip(){
-
+    removeSnip = ()=>{
+            removeSnip(this.state.snip.id).then(()=>{
+                alert('snippet deleted');
+                Router.push('/home');
+            });
     }
     render() {
         return (
@@ -69,26 +74,27 @@ class New extends Component {
                     title={this.state.snip.title}
                     changeTitle={this.changeTitle}
                     onSave={this.onSave}
-                    removeSnip = {this.removeSnip}
-                    new = {this.state.new}
+                    removeSnip={this.removeSnip}
+                    new={this.state.new}
                 />
-                <Tags 
-                    onChangeTag={(tags) => { 
-                         const { snip } = this.state;
-                         snip.tags = tags;
-                         this.setState({ snip: snip }) }}
-                    tags = {this.state.snip.tags}
+                <Tags
+                    onChangeTag={(tags) => {
+                        const { snip } = this.state;
+                        snip.tags = tags;
+                        this.setState({ snip: snip })
+                    }}
+                    tags={this.state.snip.tags}
                 />
                 <Editor
-                    code = {this.state.snip.code}
-                    language = {this.state.snip.language}
+                    code={this.state.snip.code}
+                    language={this.state.snip.language}
                     onDataChange={(code, language) => {
                         var snip = this.state.snip;
                         snip.language = language;
-                        snip.code = code; 
+                        snip.code = code;
                         this.setState({ snip: snip });
-                    }} 
-                /> 
+                    }}
+                />
             </Wrapper>
         );
     }

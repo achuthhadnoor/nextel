@@ -25,13 +25,14 @@ class CodeEditor extends Component {
       editor.on('change', e => onChange(editor.getValue(), e));
       editor.setReadOnly(setReadOnly);
       editor.setValue(setValue);
+      editor.$blockScrolling = Infinity
     }
   }
 
   shouldComponentUpdate() {
     return false;
   }
-  componentWillReceiveProps(nextProps,prevState){ 
+  UNSAFE_componentWillReceiveProps(nextProps,prevState){ 
     require(`brace/mode/${nextProps.mode}`);
     require(`brace/theme/${nextProps.theme}`);
     this.editor.getSession().setMode(`ace/mode/${nextProps.mode}`);

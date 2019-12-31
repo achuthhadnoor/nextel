@@ -1,31 +1,34 @@
 import Icon from 'react-icons-kit'
-import {upload, download ,trash} from 'react-icons-kit/feather'
-const Row = ({ children,title ,description, icon, onclick }) => {
-    const desc = description >= 30 ? `${description.substr(0, 50)}...` : description
-    let actionIcon
-    switch (icon) {
-        case 'import':
-            actionIcon =(<span  ><Icon icon={upload} /></span>);
-            break;
-        case 'export':
-            actionIcon =(<span  ><Icon icon={download} /></span>);
-            break;
-        case 'trash': 
-            actionIcon =(<span ><Icon icon={trash} /></span>);
-            break;        
-        default:
-            // code
-    }
+import { uploadCloud, downloadCloud, trash, send } from 'react-icons-kit/feather'
+const Row = ({ children, title, description, icon, onclick }) => {
+  const desc = description >= 30 ? `${description.substr(0, 50)}...` : description
+  let actionIcon
+  switch (icon) {
+    case 'import':
+      actionIcon = (<Icon icon={uploadCloud} />);
+      break;
+    case 'export':
+      actionIcon = (<Icon icon={downloadCloud} />);
+      break;
+    case 'trash':
+      actionIcon = (<Icon icon={trash} />);
+      break;
+    case 'award':
+      actionIcon = (<Icon icon={send} />);
+      break;
+    default:
+    // code
+  }
 
-    return (
-          <li className="eachSnip" onClick={onclick}>
-            <span className="red"></span>
-            <div className="subEach">
-              <span className="etitle">{title}</span>
-              <span className="edesc">{desc}</span>
-            </div>
-            {actionIcon}
-              <style jsx="true">{`
+  return (
+    <li className="eachSnip" onClick={onclick}>
+      <span className="red"></span>
+      <div className="subEach">
+        <span className="etitle">{title}</span>
+        <span className="edesc">{desc}</span>
+      </div>
+      {actionIcon}
+      <style jsx="true">{`
               .red{
                     margin: 0px;
                     border-radius: 25px;
@@ -58,8 +61,8 @@ const Row = ({ children,title ,description, icon, onclick }) => {
                  font-size:1em
                }
               `}</style>
-        </li>
-    )
+    </li>
+  )
 }
 
 export default Row

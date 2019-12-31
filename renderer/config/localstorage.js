@@ -2,8 +2,9 @@ import uid from 'uid-promise'
 
 export const getUser = () => {
     const storage = JSON.parse(localStorage.getItem('snipcode'))
-    if (storage) {
-        return storage
+    if (storage) { 
+        return storage;
+
     }
 
     const cfg = {
@@ -74,10 +75,12 @@ export const updatesnip = ({ id, newsnip }) => {
 
 export const removeSnip = (id) => {
     return new Promise((resolve, reject) => {
-        const { user } = getUser();
+        let { user } = getUser();
         const snips = user.snips.filter((s => s.id !== id));
-        user.snips = snips;
-        resolve(localStorage.setItem('snipcode', JSON.stringify((user))))
+        user.snips = snips; 
+        resolve(localStorage.setItem('snipcode', JSON.stringify({ user })));
+        debugger;
+        
     })
 }
 
@@ -85,11 +88,9 @@ export const addTag = (tags) => {
     return new Promise((resolve, reject) => {
         let _tags = [];
         const { user } = getUser();
-        const __tags = user.tags.concat(tags.filter((item) => item))
-        debugger
+        const __tags = user.tags.concat(tags.filter((item) => item)) 
         user.tags = __tags;
-        __tags.map(t => _tags.push(t.id))
-        debugger
+        __tags.map(t => _tags.push(t.id)) 
         resolve(_tags);
     })
 }

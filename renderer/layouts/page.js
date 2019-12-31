@@ -98,15 +98,16 @@ class Page extends Component {
             selectedTheme: 'light',
             theme: {}
         }
+        if (this.state.selectedTheme.theme === 'light') {
+            this.state.theme = light 
+        }
+        else {
+            this.state.theme =  dark  
+        }
     }
 
     UNSAFE_componentWillMount() {
-        if (this.state.selectedTheme.theme === 'light') {
-            this.setState({ theme: light })
-        }
-        else {
-            this.setState({ theme: dark })
-        }
+
     }
     render() {
         const { children } = this.props;

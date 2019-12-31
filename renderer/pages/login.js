@@ -29,8 +29,7 @@ class Login extends React.Component {
         this.setState({ logging: true })
         firebase
             .login(this.state.email, this.state.password)
-            .then(( user ) => {
-                debugger;  
+            .then(( user ) => { 
                 localStorage.setItem("uid", user.uid);
                 localStorage.setItem("onboard", false);
                 this.setState({ error: false });

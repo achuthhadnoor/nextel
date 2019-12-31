@@ -31,8 +31,7 @@ class Home extends React.Component {
 
     componentDidMount() {
         // Check if user exists
-        const { user } = getUser();
-        
+        const { user } = getUser(); 
         if (!user.uid) {
             Router.push("/login");
         }
@@ -42,8 +41,7 @@ class Home extends React.Component {
         if (onboard === "false") {
             localStorage.setItem("onboard", true);
             Router.push("/");
-        }
-
+        } 
         // get userdata from firestore to display the list
         this.setState({ user: user, tags: user.tags, snips: user.snips });
         // initialize the keyboard shortcuts 
