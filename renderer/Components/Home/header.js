@@ -30,11 +30,11 @@ export default (props) => (
 const Header = styled.header`
     display:flex;
     background:${props => props.theme.primary};
-    color:${props => props.theme.color}
+    color:${props => props.theme.color};
 `
 const Title = styled.h2`
     margin:0;
-    padding:.5em,
+    padding:.5em;
     flex:1;
     text-align:center;
     color:${props => props.theme.color}

@@ -16,7 +16,8 @@
         "pack-app": "npm run build && electron-builder -w --dir",
         "dist": "npm run build && electron-builder ",
         "builder": "electron-builder",
-        "postinstall": "electron-rebuild"
+        "postinstall": "electron-rebuild",
+        "web":"next ./renderer"
     },
     "build": {
         "asar": true,

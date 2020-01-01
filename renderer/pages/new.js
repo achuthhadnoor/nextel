@@ -20,8 +20,7 @@ class New extends Component {
                 language: 'java',
                 trash: false,
             }
-        };
-        debugger
+        }; 
         if (Router.router !== null) {
             const id = Router.router.query.id;
             if (id !== undefined) {
