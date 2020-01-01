@@ -1,7 +1,7 @@
 {
     "name": "snipcode",
     "productName": "Snipcode",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "main": "main/index.js",
     "description": "A simple snippet manager for menubar",
     "author": {
@@ -12,12 +12,13 @@
     "scripts": {
         "clean": "rimraf dist renderer/.next renderer/out",
         "start": "electron .",
-        "build": "next build renderer && next export renderer",
-        "pack-app": "npm run build && electron-builder -w --dir",
-        "dist": "npm run build && electron-builder -mwl",
+        "ebuild": "next build renderer && next export renderer",
+        "pack-app": "npm run ebuild && electron-builder -w --dir",
+        "build": "npm run ebuild && electron-builder -mwl",
         "builder": "electron-builder",
         "postinstall": "electron-rebuild",
-        "web":"next ./renderer"
+        "web":"next ./renderer",
+        "release": "yarn ebuild && electron-builder -mwl --publish=always"
     },
     "build": {
         "asar": true,
@@ -33,6 +34,7 @@
             "icon": "main/static/logo.ico"
         },
         "dmg": {
+            "icon":"main/static/logo.icns",
             "contents": [
                 {
                     "x": 110,
