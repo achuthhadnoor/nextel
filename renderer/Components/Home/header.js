@@ -14,7 +14,7 @@ export default (props) => (
         <Logo />
         <Title style={{ margin: 0, padding: ".5em", flex: 1, textAlign: "center" }}> Snipcode </Title>
         <Icon icon={settings} style={{ padding: "1em" }} onClick={() => { Router.push('/settings') }} />
-        <Icon
+        {/* <Icon
             icon={logOut}
             style={{ padding: "1em", cursor: "pointer" }}
             tooltip="Sign Out "
@@ -23,18 +23,18 @@ export default (props) => (
                 firebase.signOut();
                 localStorage.clear();
             }}
-        />
+        /> */}
     </Header>
 );
 
 const Header = styled.header`
     display:flex;
     background:${props => props.theme.primary};
-    color:${props => props.theme.color}
+    color:${props => props.theme.color};
 `
 const Title = styled.h2`
     margin:0;
-    padding:.5em,
+    padding:.5em;
     flex:1;
     text-align:center;
     color:${props => props.theme.color}

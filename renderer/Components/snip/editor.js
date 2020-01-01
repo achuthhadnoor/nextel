@@ -147,7 +147,7 @@ class editor extends Component {
             <>
             <CodeEditor
                 mode={this.props.language}
-                theme={this.state.theme}
+                theme={this.props.theme}
                 setReadOnly = {false}
                 onChange={this.onChange}
                 style={{ flex:1 }}

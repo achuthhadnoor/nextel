@@ -30,25 +30,23 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        // Check if user exists
+        // Check if user exists 
         const { user } = getUser(); 
         if (!user.uid) {
             Router.push("/login");
-        }
-
+        } 
         // Onboard user for the first time
         const onboard = localStorage["onboard"];
-        if (onboard === "false") {
-            localStorage.setItem("onboard", true);
-            Router.push("/");
+        if (onboard === "false") { 
+            Router.push("/"); 
         } 
         // get userdata from firestore to display the list
         this.setState({ user: user, tags: user.tags, snips: user.snips });
         // initialize the keyboard shortcuts 
         mouseTrap.bind(["down", "alt+r"], this._nextSnip);
         mouseTrap.bind(["up", "alt+r"], this._prvSnip);
-        mouseTrap.bind(["enter", "alt+l"], () => {
-            Router.push("/snip/" + this.state.selectedSnipID);
+        mouseTrap.bind(["enter", "alt+l"], () => { 
+            Router.push("/new?id=" + this.state.snips[this.state.selectedSnipID].id);
         });
     }
     componentWillUnmount() {
@@ -120,12 +118,15 @@ class Home extends React.Component {
                         style={{ position: "sticky", top: '0px' }}
                         Commands={() => this.setState({ command: !this.state.command })}
                     />
-                   { this.state.snips ?  <Snippets
+                   { 
+                    this.state.snips.length > 0 ?  
+                     <Snippets
                         snips={this.state.snips}
                         tags={this.state.tags}
                         selectedSnip={this.state.selectedSnipID}
                         onSelect={id => this.setState({ selectedSnip: id })}
-                    /> : <div>no snippets found u dumb</div>}
+                    /> :
+                    <NoSnip>Click on Add icon to start creating snippets</NoSnip>}
                     {this.state.command && <Commands close={() => this.setState({ command: false })} />}
                 </section> 
                     <Icon icon={plus}  style={{
@@ -157,5 +158,14 @@ const Wrapper = styled.div`
   color:${props=>props.color};
 `;
 export default Home;
+
+const NoSnip = styled.div`
+    display:flex;
+    height:70%;
+    flex:1;
+    justify-content:center;
+    align-items:center;
+    color:${props=>props.theme.color};
+`;
 
 // background: ${props => console.log(props.theme)};

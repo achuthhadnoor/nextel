@@ -1,5 +1,5 @@
 import Icon from 'react-icons-kit'
-import { uploadCloud, downloadCloud, trash, send } from 'react-icons-kit/feather'
+import { uploadCloud, downloadCloud, trash, send , logOut} from 'react-icons-kit/feather'
 const Row = ({ children, title, description, icon, onclick }) => {
   const desc = description >= 30 ? `${description.substr(0, 50)}...` : description
   let actionIcon
@@ -15,6 +15,9 @@ const Row = ({ children, title, description, icon, onclick }) => {
       break;
     case 'award':
       actionIcon = (<Icon icon={send} />);
+      break;
+    case 'signOut':
+      actionIcon = (<Icon icon={logOut} />);
       break;
     default:
     // code

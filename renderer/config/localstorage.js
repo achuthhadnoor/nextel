@@ -10,7 +10,7 @@ export const getUser = () => {
     const cfg = {
         user: {
             uid: "",
-            snips: [],
+            snips: null,
             tags: [],
             createOn: "Today",
             onboard: false,

@@ -33,7 +33,7 @@ class Login extends React.Component {
                 localStorage.setItem("uid", user.uid);
                 localStorage.setItem("onboard", false);
                 this.setState({ error: false });
-                Router.push('/home')
+                Router.push('/')
             })
             .catch(e => {
                 this.setState({ error: e.message });

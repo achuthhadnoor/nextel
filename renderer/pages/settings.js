@@ -2,11 +2,11 @@ import styled from 'styled-components'
 import Row from './../Components/row'
 //services
 import { exportUser, importUser, clearHistory } from './../config/settings'
-import Router  from 'next/router';
+import Router from 'next/router';
 import Icon from 'react-icons-kit'
 import { twitter, mail, award } from 'react-icons-kit/feather';
-import { arrowLeft } from 'react-icons-kit/feather';
-
+import { arrowLeft, logOut } from 'react-icons-kit/feather';
+import firebase from './../config/firebase'
 class Settings extends React.Component {
     constructor() {
         super();
@@ -19,7 +19,7 @@ class Settings extends React.Component {
     clear() {
         clearHistory();
         this.setState({
-            toast: 'All Snips are deleted'
+            toast: 'All Snippetss are deleted'
         })
         this.setState({ opacity: 1 }, () => {
             if (!this.timeout)
@@ -35,17 +35,22 @@ class Settings extends React.Component {
         return (
             <Wrapper >
                 <Header>
-                    <Icon icon={arrowLeft} onClick={()=>Router.push('/home')}/>
+                    <Icon icon={arrowLeft} onClick={() => Router.push('/home')} />
                     <h3>Settings</h3>
                 </Header>
                 {this.state.toast ?
                     <div className="toast">{this.state.toast}</div>
                     : ''}
-                <ul style={{flex:1,margin:0,padding:10}}>
-                    <Row title="Import Snips" description="import snips from JSON" icon="import" onclick={importUser} />
-                    <Row title="Export Snips" description="import snips from JSON" icon="export" onclick={exportUser} />
-                    <Row title="Delete Snips" description="import snips from JSON" icon="trash" onclick={this.clear} />
-                    <Row title="Features" description="import snips from JSON" icon="award" onclick={this.clear} />
+                <ul style={{ flex: 1, margin: 0, padding: 10 }}>
+                    <Row title="Import Snips" description="Import and override local snippets from cloud" icon="import" onclick={importUser} />
+                    <Row title="Export Snips" description="Export Snippets to cloud" icon="export" onclick={exportUser} />
+                    <Row title="Delete Snips" description="Delete all the snippets" icon="trash" onclick={this.clear} /> 
+                    <Row title="Sign Out " description="Sign ut and clear the data" icon="signOut" 
+                         onclick={() => { 
+                             firebase.signOut();
+                             Router.push('/');
+                             localStorage.setItem('onboard',false)
+                             }} />
                 </ul>
                 <Footer>
                     <a href=""><Icon icon={twitter} /></a>

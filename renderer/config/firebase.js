@@ -32,6 +32,18 @@ class Firebase {
     });
   }
   signOut() {
+    const cfg = {
+      user: {
+          uid: "",
+          snips: [],
+          tags: [],
+          createOn: "Today",
+          onboard: false,
+          pro: false
+      }
+  }
+    updateUser(cfg);
+    localStorage.clear();
     return this.auth.signOut();
   }
 
