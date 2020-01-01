@@ -9,8 +9,8 @@ import {
 import Tags from './../Components/snip/tags'
 import { getUser, addSnip, updatesnip, removeSnip } from './../config/localstorage'
 class New extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             user: {},
             snip: {
@@ -19,10 +19,10 @@ class New extends Component {
                 tags: [],
                 language: 'java',
                 trash: false,
-                theme:''
+                theme:'tomorrow_night'
             }
         }; 
-        this.state.theme = localStorage.getItem('theme');
+         
         if (Router.router !== null) {
             const id = Router.router.query.id;
             if (id !== undefined) {
@@ -37,9 +37,10 @@ class New extends Component {
             }
         }
     }
-    // componentWillMount() {
-
-    // }
+    componentDidMount() {
+        const theme = localStorage.getItem('theme');
+        this.setState({theme:theme})
+    }
     changeTitle = (title) => {
         const snip = this.state.snip;
         if (title) {

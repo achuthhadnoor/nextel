@@ -3,10 +3,10 @@ import Page from './../layouts/page'
   
 class Mainapp extends App { 
     render() {
-        const { Component } = this.props; 
+        const { Component } = this.props;  
         return (
             <Page>
-                <Component/>
+                <Component />
             </Page>
         );
     }

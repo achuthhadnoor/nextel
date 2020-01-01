@@ -32,6 +32,7 @@ class Login extends React.Component {
             .then(( user ) => { 
                 localStorage.setItem("uid", user.uid);
                 localStorage.setItem("onboard", false);
+                localStorage.setItem('theme','tomorrow_night')
                 this.setState({ error: false });
                 Router.push('/')
             })

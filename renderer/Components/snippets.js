@@ -8,8 +8,7 @@ export default ({ snips, tags, selectedSnip, onSelect }) => {
           ? (
             <>No Snippets Found</>
           ) : (
-            snips.map((s, i) => {
-              debugger
+            snips.map((s, i) => { 
               return (
                   <ListItem
                     key={s.id}
