@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Router  from "next/router";
-export default ({ snips, tags, selectedSnip, onSelect }) => {   
+export default ({ snips, tags, selectedSnip, onSelect }) => {    
   return (
     <ListBox>
       {
@@ -9,8 +9,8 @@ export default ({ snips, tags, selectedSnip, onSelect }) => {
             <>No Snippets Found</>
           ) : (
             snips.map((s, i) => {
+              debugger
               return (
-                
                   <ListItem
                     key={s.id}
                     selected={i === selectedSnip}
@@ -86,6 +86,6 @@ const Tag = styled.span`
   padding: 0.32em;
   margin-left: 0.5em;
   background: ${ props => props.selected ? props.theme.primary : props.theme.secondary };
-  color: #fff;
+  color:${props=> props.theme.color};
   border-radius: 0.2em;
 `;

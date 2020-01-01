@@ -29,9 +29,7 @@ export const importUser = () => {
 };
 
 export const clearHistory = () => {
-    const user = {
-        snips: []
-    };
-
+    const {user} = getUser();
+    user.snips = [];
     updateUser(user);
 };

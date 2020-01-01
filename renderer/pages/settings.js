@@ -19,7 +19,7 @@ class Settings extends React.Component {
     clear() {
         clearHistory();
         this.setState({
-            toast: 'All Snips are deleted'
+            toast: 'All Snippetss are deleted'
         })
         this.setState({ opacity: 1 }, () => {
             if (!this.timeout)
@@ -42,10 +42,9 @@ class Settings extends React.Component {
                     <div className="toast">{this.state.toast}</div>
                     : ''}
                 <ul style={{ flex: 1, margin: 0, padding: 10 }}>
-                    <Row title="Import Snips" description="import snips from JSON" icon="import" onclick={importUser} />
-                    <Row title="Export Snips" description="import snips from JSON" icon="export" onclick={exportUser} />
-                    <Row title="Delete Snips" description="import snips from JSON" icon="trash" onclick={this.clear} />
-                    <Row title="Features" description="import snips from JSON" icon="award" onclick={this.clear} />
+                    <Row title="Import Snips" description="Import and override local snippets from cloud" icon="import" onclick={importUser} />
+                    <Row title="Export Snips" description="Export Snippets to cloud" icon="export" onclick={exportUser} />
+                    <Row title="Delete Snips" description="Delete all the snippets" icon="trash" onclick={this.clear} /> 
                     <Row title="Sign Out " description="Sign ut and clear the data" icon="signOut" 
                          onclick={() => { 
                              firebase.signOut();
