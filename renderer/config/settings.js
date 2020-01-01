@@ -15,31 +15,17 @@ export const exportUser = () => {
 
 export const importUser = () => {
     debugger
-    // remote.dialog.showOpenDialog(
-    //     undefined,
-    //     { properties: ["openFile"] },
-    //     filePath => {
-    //         readJson(filePath[0])
-    //             .then(({ user }) => {
-    //                 if (user) {
-    //                     return updateUser(user);
-    //                 }
-    //             })
-    //             .then(() =>
-    //                 notify({
-    //                     title: "User config imported!",
-    //                     body: "Your user config was imported successfully"
-    //                 })
-    //             )
-    //             .catch(err => {
-    //                 console.log(err);
-    //                 return notify({
-    //                     title: "Error!",
-    //                     body: "Oops, something happened! Please, try again."
-    //                 });
-    //             });
-    //     }
-    // ); 
+    const {user} = getUser();
+    const _db = firebase.db;u
+        var userId = user.uid;
+        var userRef = this.db.ref("users/" + userId)
+            this.db.ref(userRef).once('value').then((snap)=>{
+                   var  {user} = getUser();
+                   user.uid = userId;
+                   user = snap.val() && snap.val().uid ? snap.val() : user;
+                   updateUser(user);
+                   resolve(user);
+            });
 };
 
 export const clearHistory = () => {

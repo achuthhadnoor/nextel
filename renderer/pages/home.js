@@ -50,7 +50,7 @@ class Home extends React.Component {
         mouseTrap.bind(["down", "alt+r"], this._nextSnip);
         mouseTrap.bind(["up", "alt+r"], this._prvSnip);
         mouseTrap.bind(["enter", "alt+l"], () => {
-            Router.push("/snip/" + this.state.selectedSnipID);
+            Router.push("/new/" + this.state.selectedSnipID);
         });
     }
     componentWillUnmount() {
