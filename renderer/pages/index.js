@@ -16,9 +16,8 @@ class Onboard extends Component {
             Router.push('/login')
         }
         else {
-            const onboard = localStorage.getItem('onboard');
-        console.log(onboard)
-            if(!onboard){
+            const onboard = localStorage.getItem('onboard'); 
+            if(onboard === "false"){
                 localStorage.setItem('onboard',true)
             } 
             else{
@@ -34,8 +33,13 @@ class Onboard extends Component {
         );
     }
 }
-const Wrapper = styled.div`
-    background:${props=>props.theme.primary}
-    color:${props=>props.theme.color}
-`
 export default Onboard;
+const Wrapper = styled.div`
+    background:${props=>props.theme.primary};
+    color:${props=>props.theme.color};
+    display: flex;
+    text-align: center;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+`

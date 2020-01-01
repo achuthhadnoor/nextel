@@ -19,8 +19,10 @@ class New extends Component {
                 tags: [],
                 language: 'java',
                 trash: false,
+                theme:''
             }
         }; 
+        this.state.theme = localStorage.getItem('theme');
         if (Router.router !== null) {
             const id = Router.router.query.id;
             if (id !== undefined) {
@@ -86,6 +88,7 @@ class New extends Component {
                 />
                 <Editor
                     code={this.state.snip.code}
+                    theme = {this.state.theme}
                     language={this.state.snip.language}
                     onDataChange={(code, language) => {
                         var snip = this.state.snip;

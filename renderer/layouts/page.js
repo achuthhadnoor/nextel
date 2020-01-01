@@ -106,10 +106,7 @@ class Page extends Component {
             this.state.theme =  dark  
         }
     }
-
-    UNSAFE_componentWillMount() {
-
-    }
+ 
     render() {
         const { children } = this.props;
         return (

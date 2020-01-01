@@ -38,19 +38,16 @@ class Home extends React.Component {
 
         // Onboard user for the first time
         const onboard = localStorage["onboard"];
-        if (onboard === "false") {
-            localStorage.setItem("onboard", true);
-            debugger
-            Router.push("/");
-
+        if (onboard === "false") { 
+            Router.push("/"); 
         } 
         // get userdata from firestore to display the list
         this.setState({ user: user, tags: user.tags, snips: user.snips });
         // initialize the keyboard shortcuts 
         mouseTrap.bind(["down", "alt+r"], this._nextSnip);
         mouseTrap.bind(["up", "alt+r"], this._prvSnip);
-        mouseTrap.bind(["enter", "alt+l"], () => {
-            Router.push("/new/" + this.state.selectedSnipID);
+        mouseTrap.bind(["enter", "alt+l"], () => { 
+            Router.push("/new?id=" + this.state.snips[this.state.selectedSnipID].id);
         });
     }
     componentWillUnmount() {
