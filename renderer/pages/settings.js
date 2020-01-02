@@ -37,6 +37,7 @@ class Settings extends React.Component {
                 <Header>
                     <Icon icon={arrowLeft} onClick={() => Router.push('/home')} />
                     <h3>Settings</h3>
+                    
                 </Header>
                 {this.state.toast ?
                     <div className="toast">{this.state.toast}</div>

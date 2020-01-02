@@ -10,7 +10,7 @@ class Onboard extends Component {
         this.state = { user:[] };
     }
     componentDidMount(){
-        
+        debugger
         const { user } = getUser();   
         if(user.uid === ''){
             Router.push('/login')

@@ -31,6 +31,7 @@ class Home extends React.Component {
 
     componentDidMount() {
         // Check if user exists 
+        debugger;
         const { user } = getUser(); 
         if (!user.uid) {
             Router.push("/login");

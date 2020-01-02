@@ -1,20 +1,21 @@
 "use strict";
 // // Services
 import firebase from './firebase'
+const  remote = window.remote;
+const  writeJSON  = window.writeJSON;
+ const readJson  = window.readJson;
+const { homedir } = window
 const { getUser, updateUser } = require("./localstorage");
-const notify = require("./notify");
-
+const notify = require("./notify"); 
 export const exportUser = () => {
     const {user} = getUser();
    const _db = firebase.db;
-    const UserRef = _db.ref('users/'+ user.uid);
-    console.log(UserRef); 
+    const UserRef = _db.ref('users/'+ user.uid); 
     UserRef.set(user);
     
 };
 
-export const importUser = () => {
-    debugger
+export const importUser = () => { 
     const {user} = getUser();
     const _db = firebase.db;u
         var userId = user.uid;
@@ -32,4 +33,60 @@ export const clearHistory = () => {
     const {user} = getUser();
     user.snips = [];
     updateUser(user);
+};  
+
+export const exportUser1 = () => {
+  remote.dialog.showSaveDialog(
+    undefined,
+    { defaultPath: `${homedir()}/snip.json` },
+    fileName => {
+      if (fileName) {
+        const user = getUser();
+
+        writeJSON(fileName, user)
+          .then(() =>
+            notify({
+              title: "User config exported!",
+              body: "Your user config was exported successfully"
+            })
+          )
+          .catch(err => {
+            console.log(err);
+            return notify({
+              title: "Error!",
+              body: "Oops, something happened! Please, try again."
+            });
+          });
+      }
+    }
+  );
 };
+
+export const importUser1 = () => {
+  remote.dialog.showOpenDialog(
+    undefined,
+    { properties: ["openFile"] },
+    filePath => {
+      readJson(filePath[0])
+        .then(({ user }) => {
+          if (user) {
+            return updateUser(user);
+          }
+        })
+        .then(() =>
+          notify({
+            title: "User config imported!",
+            body: "Your user config was imported successfully"
+          })
+        )
+        .catch(err => {
+          console.log(err);
+          return notify({
+            title: "Error!",
+            body: "Oops, something happened! Please, try again."
+          });
+        });
+    }
+  );
+};
+ 

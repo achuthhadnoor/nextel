@@ -42,8 +42,10 @@ class New extends Component {
         this.setState({theme:theme})
     }
     changeTitle = (title) => {
-        const snip = this.state.snip;
-        if (title) {
+        const snip = this.state.snip;  
+        debugger
+        if(title.length === 0) title = 'untitled'
+        if (title !== ' ') {
             snip.title = title;
             this.setState({ snip: snip });
         }
@@ -58,10 +60,7 @@ class New extends Component {
                 Router.push('/home')
             });
         }
-
-        // const { match: { params: { id } } } = this.props; 
-        // updatesnip({ id: id, newsnip: this.state.snip }).catch(e=>{console.log(e);
-        // })
+ 
     }
     removeSnip = ()=>{
             removeSnip(this.state.snip.id).then(()=>{

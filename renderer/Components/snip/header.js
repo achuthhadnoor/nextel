@@ -46,7 +46,7 @@ class Header extends Component {
                 {this.state.editTitle ?
                     <Input
                         name="snipTitle"
-                        style={{ flex: 1, margin: 0, textAlign: 'center' }}
+                        style={{ flex: 1, margin: 0, textAlign: 'center', background:'transparent' }}
                         placeholder="Enter Snippet Title"
                         onKeyDown={this.onKeyDown}
                         onChange={this.onChange}
@@ -61,14 +61,14 @@ class Header extends Component {
                     />
                     :
                     <Button
-                        style={{ flex: 1 }}
+                        style={{ flex: 1 , padding:10}}
                         onClick={() => {
                             // this.textInput.current.focus();
                             this.setState({ editTitle: !this.state.editTitle })
                         }}
                         tooltip="Click to edit the title"
                     >
-                        {this.state.snipTitle}
+                        {this.state.snipTitle }
                     </Button>}
                     {this.props.new ? null : <Button onClick={() => this.props.removeSnip()}>
                         <Icon icon={trash} />
