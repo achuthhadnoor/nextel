@@ -27,7 +27,7 @@ export default props => {
 
 const InputWrapper = styled.div`
   display: flex;
-  background:transparent;
+  background:${props=>props.secondary};
   color:${props=>props.theme.color};
   margin: 10px;
   border-radius: 5px;
@@ -36,6 +36,8 @@ const InputWrapper = styled.div`
 `;
 const IconWrapper = styled.span`
   padding: 10px; 
+  background:${props=>props.secondary};
+  color:${props=>props.theme.color};
 `;
 const Input = styled.input`
   border: none;
