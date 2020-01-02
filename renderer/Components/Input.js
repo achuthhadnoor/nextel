@@ -27,7 +27,7 @@ export default props => {
 
 const InputWrapper = styled.div`
   display: flex;
-  background:${props=>props.theme.secondary};
+  background:transparent;
   color:${props=>props.theme.color};
   margin: 10px;
   border-radius: 5px;

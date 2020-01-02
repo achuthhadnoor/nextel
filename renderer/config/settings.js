@@ -1,6 +1,6 @@
 "use strict";
 // // Services
-import firebase from './firebase'
+import firebase from './firebase' 
 const  remote = window.remote;
 const  writeJSON  = window.writeJSON;
  const readJson  = window.readJson;
@@ -15,9 +15,22 @@ export const exportUser = () => {
     
 };
 
+const sync = ()=>{ 
+  const _db = firebase.db;
+  var userId = user.uid;
+  var userRef = this.db.ref("users/" + userId)
+  this.db.ref(userRef).once('value').then((snap)=>{
+         var  {user} = getUser();
+         user.uid = userId;
+         user = snap.val() && snap.val().uid ? snap.val() : user;
+         updateUser(user);
+         resolve(user);
+  });
+}
+
 export const importUser = () => { 
     const {user} = getUser();
-    const _db = firebase.db;u
+    const _db = firebase.db;
         var userId = user.uid;
         var userRef = this.db.ref("users/" + userId)
             this.db.ref(userRef).once('value').then((snap)=>{
