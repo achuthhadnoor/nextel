@@ -82,13 +82,13 @@ Router.onRouteChangeError = stopProgress
 const light = {
     color: '#25282c',
     primary: '#eee',
-    secondary:'#fff',
+    secondary: '#fff',
     accent: '#5d9e6b'
 };
 const dark = {
     color: '#eee',
     primary: '#25282c',
-    secondary:'#181a1d',
+    secondary: '#181a1d',
     accent: "#5d9e6b"
 }
 
@@ -100,29 +100,46 @@ class Page extends Component {
             theme: {}
         }
         if (this.state.selectedTheme.theme === 'light') {
-            this.state.theme = light 
+            this.state.theme = light
         }
         else {
-            this.state.theme =  dark  
+            this.state.theme = dark
         }
+        this.handleKeypress = this.handleKeypress.bind(this)
     }
- 
+    componentDidMount() {
+        document.addEventListener('keydown', this.handleKeypress, true)
+    }
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleKeypress, true)
+    }
+
+    handleKeypress(event) {  
+    if (event.altKey  && event.keyCode === 78 ) { 
+      return Router.push({
+        pathname: '/new'
+      })
+    }
+    if (event.altKey && event.keyCode === 83 ) { 
+      return Router.push({
+        pathname: '/settings'
+      })
+    }
+    
+    if (event.altKey && event.keyCode === 37 ) { 
+      return Router.push({
+        pathname: '/home'
+      })
+    }
+}
+
+
     render() {
         const { children } = this.props;
         return (
             <>
                 <ThemeProvider theme={this.state.theme}>
                     <GlobalStyle />
-                    <button className="themeChanger" onClick={() => {
-                        this.state.selectedTheme === 'light' ? this.setState({ theme: light, selectedTheme: 'dark' }) : this.setState({ theme: dark, selectedTheme: 'light' })
-                        const theme = localStorage.getItem('theme');
-                        if(theme === 'tomorrow'){
-                            localStorage.setItem('theme','tomorrow_night');
-                        }
-                        else{
-                            const theme = localStorage.setItem('theme','tomorrow');
-                        }
-                    }}>❤</button>
                     {children}
                 </ThemeProvider>
             </>

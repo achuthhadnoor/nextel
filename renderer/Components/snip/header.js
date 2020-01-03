@@ -7,7 +7,8 @@ import Input from './../Input'
 import Logo from './../logo'
 
 import Icon from 'react-icons-kit'
-import { check, arrowLeft, trash } from 'react-icons-kit/feather'
+import {   arrowLeft, trash } from 'react-icons-kit/feather'
+import { x } from 'react-icons-kit/feather';
 
 class Header extends Component {
     constructor(props) {
@@ -43,36 +44,44 @@ class Header extends Component {
                 }}>
                     <Icon icon={arrowLeft} />
                 </Button>
-                {this.state.editTitle ?
-                    <Input
-                        name="snipTitle"
-                        style={{ flex: 1, margin: 0, textAlign: 'center' }}
-                        placeholder="Enter Snippet Title"
-                        onKeyDown={this.onKeyDown}
-                        onChange={this.onChange}
-                        onBlur={() => {
-                            this.setState({ editTitle: !this.state.editTitle });
-                            this.props.changeTitle(
-                                this.state.snipTitle
-                            );
-                        }}
-                        value={this.state.snipTitle}
-                    // ref={this.textInput} 
-                    />
-                    :
-                    <Button
-                        style={{ flex: 1 }}
-                        onClick={() => {
-                            // this.textInput.current.focus();
-                            this.setState({ editTitle: !this.state.editTitle })
-                        }}
-                        tooltip="Click to edit the title"
-                    >
-                        {this.state.snipTitle}
-                    </Button>}
-                    {this.props.new ? null : <Button onClick={() => this.props.removeSnip()}>
-                        <Icon icon={trash} />
-                    </Button>}
+                {/* {this.state.editTitle ? */}
+                <Input
+                    name="snipTitle"
+                    style={{ flex: 1, margin: 0, textAlign: 'center', background: 'transparent', border: '1px solid #555' }}
+                    placeholder="Enter Snippet Title"
+                    onKeyDown={this.onKeyDown}
+                    onChange={this.onChange}
+                    onBlur={() => {
+                        this.setState({ editTitle: !this.state.editTitle });
+                        this.props.changeTitle(
+                            this.state.snipTitle
+                        );
+                        if (this.state.snipTitle.length === 0 || this.state.snipTitle === ' ')
+                            this.setState({ snipTitle: 'untitled' })
+                    }}
+                    value={this.state.snipTitle} 
+                />
+                {/* :
+                     <Button
+                    style={{ flex: 1, padding: 10 }}
+                    onClick={() => {
+                        // this.textInput.current.focus();
+                        this.setState({ editTitle: !this.state.editTitle })
+                    }}
+                    tooltip="Click to edit the title"
+                >
+                    {this.state.snipTitle}
+                </Button> } */}
+                    {
+                    this.props.new ?
+                        <Button onClick={() => Router.push('/home')}>
+                            <Icon icon={x} />
+                        </Button>
+                        :
+                        <Button onClick={() => this.props.removeSnip()}>
+                            <Icon icon={trash} />
+                        </Button>
+                }
             </HeaderWrapper>
         );
     }

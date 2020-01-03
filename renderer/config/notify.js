@@ -9,13 +9,13 @@ module.exports = ({ title, body, url, onClick }) => {
   }
 
   if (url || onClick) {
-    // notification.on('click', () => {
-    //   if (onClick) {
-    //     return onClick()
-    //   }
+    notification.on('click', () => {
+      if (onClick) {
+        return onClick()
+      }
 
-    //   remote.shell.openExternal(url)
-    // })
+      window.remote.shell.openExternal(url)
+    })
   }
 
   notification.show()

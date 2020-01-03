@@ -111,8 +111,7 @@ const TabIndicator = styled.i`
   width: 0.5em;
   margin: 0.5em;
   border-radius: 0.3em;
-  cursor: pointer;
-  flex:1;
+  cursor: pointer; 
   background: ${props => (props.selected ? props.theme.accent : "transparent")};
 `;
 // "#87C895"

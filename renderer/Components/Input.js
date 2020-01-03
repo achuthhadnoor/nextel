@@ -5,7 +5,7 @@ import { search, command } from "react-icons-kit/feather";
 export default props => {
     if (props.search) {
         return (
-            <InputWrapper>
+            <InputWrapper search>
                 <IconWrapper>
                     <Icon icon={search} />
                 </IconWrapper>
@@ -27,7 +27,7 @@ export default props => {
 
 const InputWrapper = styled.div`
   display: flex;
-  background:${props=>props.theme.secondary};
+  background:${props=>props.theme.secondary };
   color:${props=>props.theme.color};
   margin: 10px;
   border-radius: 5px;
@@ -36,6 +36,8 @@ const InputWrapper = styled.div`
 `;
 const IconWrapper = styled.span`
   padding: 10px; 
+  background:${props=>props.secondary};
+  color:${props=>props.theme.color};
 `;
 const Input = styled.input`
   border: none;

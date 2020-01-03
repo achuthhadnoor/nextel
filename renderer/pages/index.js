@@ -9,8 +9,7 @@ class Onboard extends Component {
         super();
         this.state = { user:[] };
     }
-    componentDidMount(){
-        
+    componentDidMount(){ 
         const { user } = getUser();   
         if(user.uid === ''){
             Router.push('/login')
@@ -28,7 +27,10 @@ class Onboard extends Component {
     render() {
         return (
             <Wrapper>
-                <Link href="/home"><a >go home</a></Link>
+                <h1>Hey</h1>
+                <h3>Welcome to snipcode!</h3>
+                <h5>A simple snippet manager on menubar</h5>
+                <LinkWrapper ><span onClick={()=>Router.push('/home')}>Get Started</span></LinkWrapper>
             </Wrapper>
         );
     }
@@ -42,4 +44,11 @@ const Wrapper = styled.div`
     flex: 1;
     align-items: center;
     justify-content: center;
+    flex-direction:column
+`
+const LinkWrapper = styled.a` 
+
+    background:#eee;
+    color:#222;
+    padding:10px 20px;
 `

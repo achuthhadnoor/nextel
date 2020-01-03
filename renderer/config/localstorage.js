@@ -40,8 +40,7 @@ export const addSnip = ({ title, code, tags, language }) => {
                 code,
                 tags,
                 language,
-                createdAt: new Date(),
-                updatedAt: new Date(),
+                timestamp: Date.now()
             } 
             
         const snips = [...user.snips, snip]
@@ -61,7 +60,7 @@ export const updatesnip = ({ id, newsnip }) => {
         snip.code = newsnip.code || snip.code
         snip.tags = newsnip.tags || snip.tags 
         snip.language = newsnip.language || snip.language
-        snip.updatedAt = new Date()
+        snip.timestamp = Date.now()
         const snips = user.snips.filter(t => {
             if (t.id === id) {
                 return (t = snip)
@@ -79,8 +78,7 @@ export const removeSnip = (id) => {
         const snips = user.snips.filter((s => s.id !== id));
         user.snips = snips; 
         resolve(localStorage.setItem('snipcode', JSON.stringify({ user })));
-        debugger;
-        
+       
     })
 }
 

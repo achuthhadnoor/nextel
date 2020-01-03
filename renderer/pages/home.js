@@ -30,7 +30,7 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        // Check if user exists 
+        // Check if user exists  
         const { user } = getUser(); 
         if (!user.uid) {
             Router.push("/login");
@@ -78,8 +78,7 @@ class Home extends React.Component {
         }
     };
 
-    filteredList = (value) => {
-        debugger
+    filteredList = (value) => { 
         if (!value) {
             this.setState({ snips: this.state.user.snips });
             return;

@@ -119,8 +119,8 @@ function toggleWindow() {
 
 function createWindow() {
   trayWindow = new BrowserWindow({
-    width: 350,
-    height: 500,
+    width: 400,
+    height: 550,
     resizable: false,
     movable: false,
     fullscreenable: false,

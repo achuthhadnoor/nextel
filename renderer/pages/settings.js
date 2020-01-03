@@ -26,17 +26,14 @@ class Settings extends React.Component {
                 clearTimeout(this.timeout);
             this.timeout = setTimeout(() => this.setState({ opacity: 0 }), 1000);
         });
-    }
-    turnOnboard = () => {
-        localStorage.setItem('onboard', false);
-        Router.push('/');
-    }
+    } 
     render() {
         return (
             <Wrapper >
                 <Header>
                     <Icon icon={arrowLeft} onClick={() => Router.push('/home')} />
                     <h3>Settings</h3>
+
                 </Header>
                 {this.state.toast ?
                     <div className="toast">{this.state.toast}</div>
@@ -44,19 +41,19 @@ class Settings extends React.Component {
                 <ul style={{ flex: 1, margin: 0, padding: 10 }}>
                     <Row title="Import Snips" description="Import and override local snippets from cloud" icon="import" onclick={importUser} />
                     <Row title="Export Snips" description="Export Snippets to cloud" icon="export" onclick={exportUser} />
-                    <Row title="Delete Snips" description="Delete all the snippets" icon="trash" onclick={this.clear} /> 
-                    <Row title="Sign Out " description="Sign ut and clear the data" icon="signOut" 
-                         onclick={() => { 
-                             firebase.signOut();
-                             Router.push('/');
-                             localStorage.setItem('onboard',false)
-                             }} />
+                    <Row title="Delete Snips" description="Delete all the snippets" icon="trash" onclick={this.clear} />
+                    <Row title="Sign Out " description="SignOut and clear the data" icon="signOut"
+                        onclick={() => {
+                            firebase.signOut();
+                            Router.push('/');
+                            localStorage.setItem('onboard', false)
+                        }} />
+                    <Row title="Onboarding" description="View Onboarding screens" icon="" onclick={()=>{
+                        localStorage.setItem('onboard',false);
+                        Router.push('/')
+                    }} />
                 </ul>
-                <Footer>
-                    <a href=""><Icon icon={twitter} /></a>
-                    <a href=""><Icon icon={award} /></a>
-                    <a href="mailto:achuth.hadnoor123@gmail.com?Subject=Feedback%20on%20Snipcode"><Icon icon={mail} /></a>
-                </Footer>
+
                 <style jsx="true">{`
                   .toast{
                     opacity:${this.state.opacity};

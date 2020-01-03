@@ -42,26 +42,23 @@ class New extends Component {
         this.setState({theme:theme})
     }
     changeTitle = (title) => {
-        const snip = this.state.snip;
-        if (title) {
+        const snip = this.state.snip;   
+        if(title.length === 0) title = 'untitled'
+        if (title !== ' ') {
             snip.title = title;
             this.setState({ snip: snip });
         }
     }
-    onSave = () => {
-        console.log(this.state);
+    onSave = async () => { 
         if (this.state.new) {
-            addSnip(this.state.snip).then(() => Router.push('/home'));
+           await addSnip(this.state.snip).then(() => Router.push('/home'));
         }
         else {
             updatesnip({ id: this.state.snip.id, newsnip: this.state.snip }).then(() => {
                 Router.push('/home')
             });
         }
-
-        // const { match: { params: { id } } } = this.props; 
-        // updatesnip({ id: id, newsnip: this.state.snip }).catch(e=>{console.log(e);
-        // })
+ 
     }
     removeSnip = ()=>{
             removeSnip(this.state.snip.id).then(()=>{

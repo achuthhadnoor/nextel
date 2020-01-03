@@ -61,7 +61,7 @@ const ListItem = styled.li`
     return text + color
   }};
   a { 
-    transition:all 1s ease;
+    transition:all .5s ease;
     color: #fff;
     text-decoration: none;
   }
@@ -70,9 +70,9 @@ const ListItem = styled.li`
     background:${props=>props.theme.secondary};
     border-left: 2px solid #5D9E6B;
     outline: none; 
-    transition:all 1s ease;
+    transition:all .5s ease;
     a{
-      background:${props=>props.theme.primary}
+      background:${props=>props.theme.primary};
     }
   }
 `;
@@ -80,6 +80,11 @@ const ListItem = styled.li`
 
 const TagWrapper = styled.div`
   padding: 0.5em;
+  span{
+    background: ${ props => props.theme.secondary };
+    color:${props=> props.theme.color};
+    
+  }
 `;
 const Tag = styled.span`
   padding: 0.32em;
