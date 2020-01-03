@@ -18,6 +18,7 @@
         "builder": "electron-builder",
         "postinstall": "electron-rebuild",
         "web":"next ./renderer",
+        "win":"npm run ebuild && electron-builder -w",
         "release": "yarn ebuild && electron-builder -mwl --publish=always"
     },
     "build": {

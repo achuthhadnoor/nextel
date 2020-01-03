@@ -43,15 +43,15 @@ class Home extends React.Component {
         // get userdata from firestore to display the list
         this.setState({ user: user, tags: user.tags, snips: user.snips });
         // initialize the keyboard shortcuts 
-        mouseTrap.bind(["down", "alt+r"], this._nextSnip);
-        mouseTrap.bind(["up", "alt+r"], this._prvSnip);
-        mouseTrap.bind(["enter", "alt+l"], () => { 
-            Router.push("/new?id=" + this.state.snips[this.state.selectedSnipID].id);
-        });
+        // mouseTrap.bind(["down", "alt+r"], this._nextSnip);
+        // mouseTrap.bind(["up", "alt+r"], this._prvSnip);
+        // mouseTrap.bind(["enter", "alt+l"], () => { 
+        //     Router.push("/new?id=" + this.state.snips[this.state.selectedSnipID].id);
+        // });
     }
     componentWillUnmount() {
-        mouseTrap.unbind(["left", "alt+l"], this.lefttab);
-        mouseTrap.unbind(["enter", "alt+l"], this._gotoSnip);
+        // mouseTrap.unbind(["left", "alt+l"], this.lefttab);
+        // mouseTrap.unbind(["enter", "alt+l"], this._gotoSnip);
     }
     _nextSnip() {
         this.setState({
