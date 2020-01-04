@@ -2,7 +2,7 @@ import uid from 'uid-promise'
 
 export const getUser = () => {
     const storage = JSON.parse(localStorage.getItem('snipcode'))
-    if (storage) { 
+    if (storage) {
         return storage;
 
     }
@@ -14,7 +14,8 @@ export const getUser = () => {
             tags: [],
             createOn: "Today",
             onboard: false,
-            pro: false
+            pro: false,
+            timestamp: Date.now()
         }
     }
 
@@ -24,28 +25,30 @@ export const getUser = () => {
 }
 
 export const updateUser = user => {
+    user.timestamp = Date.now();
     return localStorage.setItem('snipcode', JSON.stringify({ user }))
 }
 
-export const addSnip = ({ title, code, tags, language }) => { 
+export const addSnip = ({ title, code, tags, language }) => {
     return new Promise(async (resolve, reject) => {
         if (!title) {
             return reject(new TypeError('title is required'))
         }
         const { user } = getUser()
-        const id = await uid(20); 
-            const snip = {
-                id,
-                title,
-                code,
-                tags,
-                language,
-                timestamp: Date.now()
-            } 
-            
+        const id = await uid(20);
+        const snip = {
+            id,
+            title,
+            code,
+            tags,
+            language,
+            timestamp: Date.now()
+        }
+
         const snips = [...user.snips, snip]
-        user.snips = snips 
-        resolve(localStorage.setItem('snipcode', JSON.stringify({ user }))) 
+        user.snips = snips
+        user.timestamp = Date.now();
+        resolve(localStorage.setItem('snipcode', JSON.stringify({ user })))
     })
 }
 
@@ -53,12 +56,12 @@ export const updatesnip = ({ id, newsnip }) => {
     return new Promise(async (resolve, reject) => {
         if (!newsnip && !id) {
             return reject(new TypeError('id and snip is required'))
-        } 
+        }
         const { user } = getUser()
         const snip = user.snips.filter(snipcode => snipcode.id === id)[0]
         snip.title = newsnip.title || snip.title
         snip.code = newsnip.code || snip.code
-        snip.tags = newsnip.tags || snip.tags 
+        snip.tags = newsnip.tags || snip.tags
         snip.language = newsnip.language || snip.language
         snip.timestamp = Date.now()
         const snips = user.snips.filter(t => {
@@ -67,7 +70,8 @@ export const updatesnip = ({ id, newsnip }) => {
             }
             return t
         })
-        user.snips = snips
+        user.snips = snips;
+        user.timestamp = Date.now();
         resolve(localStorage.setItem('snipcode', JSON.stringify({ user })))
     })
 }
@@ -76,9 +80,9 @@ export const removeSnip = (id) => {
     return new Promise((resolve, reject) => {
         let { user } = getUser();
         const snips = user.snips.filter((s => s.id !== id));
-        user.snips = snips; 
+        user.snips = snips;
+        user.timestamp = Date.now();
         resolve(localStorage.setItem('snipcode', JSON.stringify({ user })));
-       
     })
 }
 
@@ -86,9 +90,9 @@ export const addTag = (tags) => {
     return new Promise((resolve, reject) => {
         let _tags = [];
         const { user } = getUser();
-        const __tags = user.tags.concat(tags.filter((item) => item)) 
+        const __tags = user.tags.concat(tags.filter((item) => item))
         user.tags = __tags;
-        __tags.map(t => _tags.push(t.id)) 
+        __tags.map(t => _tags.push(t.id))
         resolve(_tags);
     })
 }

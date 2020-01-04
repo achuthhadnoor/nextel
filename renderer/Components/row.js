@@ -1,5 +1,5 @@
 import Icon from 'react-icons-kit'
-import { uploadCloud, downloadCloud, trash, send , logOut} from 'react-icons-kit/feather'
+import { refreshCw  , uploadCloud, downloadCloud, trash, send , logOut} from 'react-icons-kit/feather'
 import styled from 'styled-components'
 const Row = ({ children, title, description, icon, onclick }) => {
   const desc = description >= 30 ? `${description.substr(0, 50)}...` : description
@@ -19,6 +19,8 @@ const Row = ({ children, title, description, icon, onclick }) => {
       break;
     case 'signOut':
       actionIcon = (<Icon icon={logOut} />);
+    case 'sync':
+      actionIcon = (<Icon icon={refreshCw} />);
       break;
     default:
     // code

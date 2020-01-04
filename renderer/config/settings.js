@@ -13,25 +13,51 @@ export const exportUser = () => {
     const _db = firebase.db;
     const UserRef = _db.ref('users/' + user.uid);
     UserRef.set(user);
-
 };
 
-const sync = () => {
+export const sync = () => {
     const _db = firebase.db;
+    var { user } = getUser();
     var userId = user.uid;
-    var userRef = this.db.ref("users/" + userId)
-    this.db.ref(userRef).once('value').then((snap) => {
-        var { user } = getUser();
-        userId = user.uid;
-
-        user = snap.val() && snap.val().uid ? snap.val() : user;
-        updateUser(user);
-        resolve(user);
+    var userRef = firebase.db.ref("users/" + userId)
+    firebase.db.ref(userRef).once('value').then((snap) => {
+        var i, j;
+        var cUser = snap.val();
+        if (user.snips) {
+            // local changes are ahead of cloud
+            for (i = 0; i < user.snips.length; i++) {
+                if(cUser.snips){
+                    for (j = 0; j < cUser.snips.length; j++) {
+                        if (user.snips[i].id === cUser.snips[j].id) {
+                             user.snips[i].timestamp > cUser.snips[j].timestamp ? user.snips[i] : user.snips[i] = cUser.snips[j]  
+                        }
+                    }
+                }
+                else{
+                    cUser = user;
+                    firebase.db.ref(userRef).set(user);
+                    updateUser(user)
+                }
+            } 
+            var newCloudSnips = cUser.snips.filter(function(obj) { return user.snips.indexOf(obj) == -1; });
+            user.snips.push(newCloudSnips);
+            updateUser(user);
+            firebase.db.ref(userRef).set(user); 
+        }
+        else{
+            if(cUser.snips){
+                user = cUser;
+                firebase.db.ref(userRef).set(user);
+                updateUser(user);
+            }
+        }
+        // updateUser(user);
+        // resolve(user);
     });
 }
 
 export const importUser = () => {
-    if (isElectron) { 
+    if (isElectron) {
         remote.dialog.showOpenDialog(
             undefined,
             { properties: ["openFile"] },

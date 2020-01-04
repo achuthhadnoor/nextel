@@ -40,7 +40,6 @@ class Header extends Component {
             <HeaderWrapper>
                 <Button onClick={() => {
                     this.props.onSave();
-                    Router.push('/home')
                 }}>
                     <Icon icon={arrowLeft} />
                 </Button>

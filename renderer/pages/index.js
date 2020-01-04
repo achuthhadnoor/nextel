@@ -47,7 +47,7 @@ const Wrapper = styled.div`
     flex-direction:column
 `
 const LinkWrapper = styled.a` 
-
+    cursor:pointer;
     background:#eee;
     color:#222;
     padding:10px 20px;

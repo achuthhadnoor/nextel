@@ -22,8 +22,9 @@ class Firebase {
             var userRef = this.db.ref("users/" + userId)
                 this.db.ref(userRef).once('value').then((snap)=>{
                        var  {user} = getUser();
-                       user.uid = userId;
                        user = snap.val() && snap.val().uid ? snap.val() : user;
+                       user.uid = userId;
+                       user.timestamp = Date.now();
                        updateUser(user);
                        resolve(user);
                 });
