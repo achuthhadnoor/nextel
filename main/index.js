@@ -133,7 +133,7 @@ function createWindow() {
     icon: platform() === "win32" ?
       join(__dirname, "main/static/logo.ico") : join(__dirname, "main/static/logo.icns"),
     webPreferences: {
-      nodeIntegration: false,
+      nodeIntegration: true,
       preload: join(__dirname, 'preload.js'),
     },
   });
