@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Row from './../Components/row'
 //services
-import { exportUser, importUser, clearHistory ,sync } from './../config/settings'
+// import { exportUser, importUser, clearHistory ,sync } from './../config/settings'
 import Router from 'next/router';
 import Icon from 'react-icons-kit'
 import { twitter, mail, award } from 'react-icons-kit/feather';
@@ -40,8 +40,8 @@ class Settings extends React.Component {
                     : ''}
                 <ul style={{ flex: 1, margin: 0, padding: 10 }}>
                     <Row title="Sync Snippets" description="sync snips with the cloud" icon="sync" onclick={sync} />
-                    <Row title="Import Snippets" description="Import Snippets as JSON" icon="import" onclick={importUser} />
-                    <Row title="Export Snippets" description="Export Snippets AS JSON" icon="export" onclick={exportUser} />
+                    {/* <Row title="Import Snippets" description="Import Snippets as JSON" icon="import" onclick={importUser} />
+                    <Row title="Export Snippets" description="Export Snippets AS JSON" icon="export" onclick={exportUser} /> */}
                     <Row title="Delete Snippets" description="Delete all the snippets" icon="trash" onclick={this.clear} />
                     <Row title="Sign Out " description="SignOut and clear the data" icon="signOut"
                         onclick={() => {

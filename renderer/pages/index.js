@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import styled from 'styled-components'
-import Router from 'next/router'
-import Link from 'next/link'
+import Router from 'next/router' 
 
 import {getUser} from './../config/localstorage'
 class Onboard extends Component {
