@@ -64,7 +64,7 @@
     },
     "devDependencies": {
         "babel-plugin-styled-components": "^1.10.6",
-        "electron": "^7.1.7",
+        "electron": "^7.2.4",
         "electron-builder": "^21.2.0",
         "electron-rebuild": "^1.8.8",
         "next": "latest",
